@@ -1,5 +1,3 @@
 export const Fab = () => {
-    return (
-        <div>button</div>
-    )
-}
+	return <div>button</div>;
+};

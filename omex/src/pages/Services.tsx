@@ -1,10 +1,10 @@
-import { Title } from '../components';
+import { ScreenContainer, Title } from '../components';
 
 export const Services = () => {
-    return (
-        <>
-            <Title text="Services" />
-            <div>Services page content goes here.</div>
-        </>
-    )
-}
+	return (
+		<ScreenContainer>
+			<Title text="Services" />
+			<div>Services page content goes here.</div>
+		</ScreenContainer>
+	);
+};

@@ -1,21 +1,29 @@
 import CircleIcon from '@mui/icons-material/Circle';
 import { ScreenContainer } from '../components';
-import { Services } from './index';
+import { ContactUs, Projects, Reviews, Services } from './index';
 
 export const Home = () => {
-    return (
-        <div className="flex flex-col items-center mt-[48px] ">
-        {/* <div className="flex flex-col items-center lg:w-lg md:w-md sm:w-screen h-screen"> */}
-        <ScreenContainer>
-            <CircleIcon style={{ fontSize: 200, color: 'lightgray' }} />
-            <p>OMEX</p>
-            <div className='mt-8'>
-                <p className="text-center text-gray-500">Welcome to Omex.</p>
-            </div>
-        </ScreenContainer>
-        <ScreenContainer>
-            <Services />
-        </ScreenContainer>
-        </div>
-    )
-}
+	return (
+		<div className="flex flex-col items-center mt-[48px] ">
+			<ScreenContainer>
+				<CircleIcon style={{ fontSize: 200, color: 'lightgray' }} />
+				<div className="mt-8">
+					<h5 className="text-center text-gray-500 font-aleo tracking-wide">
+						Welcome to Omex.
+					</h5>
+				</div>
+				<div className="mt-8">
+					<p className="px-2 md:px-0 md:line-clamp-3 font-kanit font-light">
+						Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet
+						consectetur adipiscing elit quisque faucibus ex. Adipiscing elit
+						quisque faucibus ex sapien vitae pellentesque.
+					</p>
+				</div>
+			</ScreenContainer>
+			<Services />
+			<Projects />
+			<Reviews />
+			<ContactUs />
+		</div>
+	);
+};

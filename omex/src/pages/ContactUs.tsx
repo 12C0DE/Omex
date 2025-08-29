@@ -1,12 +1,41 @@
+import { useForm } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
 import { ScreenContainer, Title } from '../components/index';
 
+type SendMessageForm = {
+	email: string;
+	message: string;
+};
+
 export const ContactUs = () => {
+	const maxMessageLength = 500;
+	const {
+		register,
+		handleSubmit,
+		watch,
+		reset,
+		formState: { errors },
+	} = useForm<SendMessageForm>({
+		defaultValues: {
+			email: '',
+			message: '',
+		},
+	});
+	const onSubmit: SubmitHandler<SendMessageForm> = (data) => {
+		console.log(data);
+		alert('Message sent! We will get back to you shortly.');
+		//clear form
+		reset();
+	};
+
 	return (
 		<ScreenContainer>
 			<Title text="Contact Us" />
-			<div className="flex flex-col items-center mt-8 gap-4">
+			<form
+				className="flex flex-col items-center mt-8 gap-4"
+				onSubmit={handleSubmit(onSubmit)}
+			>
 				<div className="flex flex-row align-center gap-4">
-					{/* <SmartphoneIcon style={{ fontSize: 48, color: 'black' }} /> */}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -39,7 +68,62 @@ export const ContactUs = () => {
 						<line y1="0.5" x2="329" y2="0.5" stroke="black" />
 					</svg>
 				</div>
-			</div>
+				<div>
+					<h5 className="text-center text-2xl font-kanit tracking-wide">
+						Write Us
+					</h5>
+				</div>
+				<div className="w-full">
+					<textarea
+						className="w-full border-1 border-black max-h-[450px] p-1 font-kanit font-light"
+						rows={5}
+						{...register('message', {
+							required: 'Message is required',
+							minLength: 1,
+							maxLength: maxMessageLength,
+						})}
+					></textarea>
+					<div className="flex flex-row justify-between">
+						<p
+							role="alert"
+							className="text-red-500 font-kanit text-bold italic"
+						>
+							{errors?.message?.message}
+						</p>
+						<p className="text-xs font-kanit text-lighter italic text-gray-400">
+							{maxMessageLength - (watch('message')?.length ?? 0)}
+						</p>
+					</div>
+				</div>
+				<label className="self-start font-kanit text-medium" htmlFor="email">
+					Your Email (required)
+				</label>
+				<div className="w-100">
+					<input
+						type="email"
+						className="w-full border-1 border-black font-kanit font-light px-1"
+						{...register('email', {
+							required: 'Email is required',
+							pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+						})}
+					/>
+					{errors.email && (
+						<p
+							role="alert"
+							className="text-red-500 font-kanit text-bold italic"
+						>
+							{errors.email.message}
+						</p>
+					)}
+				</div>
+				<div className="w-full flex justify-end">
+					<input
+						type="submit"
+						className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
+						value={'Send'}
+					/>
+				</div>
+			</form>
 		</ScreenContainer>
 	);
 };

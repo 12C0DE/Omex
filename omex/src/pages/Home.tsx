@@ -1,12 +1,12 @@
-import CircleIcon from '@mui/icons-material/Circle';
-import { ScreenContainer } from '../components';
+import { Logo, ScreenContainer } from '../components';
 import { ContactUs, Projects, Reviews, Services } from './index';
 
 export const Home = () => {
 	return (
 		<div className="flex flex-col items-center mt-[48px] ">
 			<ScreenContainer>
-				<CircleIcon style={{ fontSize: 200, color: 'lightgray' }} />
+				<Logo />
+				{/* <CircleIcon style={{ fontSize: 200, color: 'lightgray' }} /> */}
 				<div className="mt-8">
 					<h5 className="text-center text-gray-500 font-aleo tracking-wide">
 						Welcome to Omex.

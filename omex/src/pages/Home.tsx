@@ -6,7 +6,6 @@ export const Home = () => {
 		<div className="flex flex-col items-center mt-[48px] ">
 			<ScreenContainer>
 				<Logo />
-				{/* <CircleIcon style={{ fontSize: 200, color: 'lightgray' }} /> */}
 				<div className="mt-8">
 					<h5 className="text-center text-gray-500 font-aleo tracking-wide">
 						Welcome to Omex.

@@ -30,7 +30,7 @@ export const ContactUs = () => {
 
 	return (
 		<ScreenContainer>
-			<Title text="Contact Us" />
+			<Title text="Contact Us" id="contactus" />
 			<form
 				className="flex flex-col items-center mt-8 gap-4"
 				onSubmit={handleSubmit(onSubmit)}

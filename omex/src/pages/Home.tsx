@@ -3,7 +3,7 @@ import { ContactUs, Projects, Reviews, Services } from './index';
 
 export const Home = () => {
 	return (
-		<div className="flex flex-col items-center mt-[48px] ">
+		<div id="home" className="flex flex-col items-center mt-[48px]">
 			<ScreenContainer>
 				<Logo />
 				<div className="mt-8">

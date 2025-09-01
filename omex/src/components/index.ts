@@ -1,3 +1,4 @@
+export * from './EditStars';
 export * from './Fab';
 export * from './Header';
 export * from './Logo';

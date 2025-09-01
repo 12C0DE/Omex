@@ -8,7 +8,7 @@ export const Header = () => {
 			<h1 className="text-sm font-bold">OMEX</h1>
 			<div className="flex flex-col justify-end items-end gap-0">
 				<button
-					className="hover:cursor-pointer rounded-md hover:bg-gray-100 transition"
+					className="hover:cursor-pointer  hover:bg-gray-100 transition"
 					onClick={() => setShowMenu(!showMenu)}
 				>
 					<svg
@@ -26,7 +26,7 @@ export const Header = () => {
 						/>
 					</svg>
 				</button>
-				{showMenu ? <Menu selected={setShowMenu}/> : null}
+				{showMenu ? <Menu selected={setShowMenu} /> : null}
 			</div>
 		</header>
 	);

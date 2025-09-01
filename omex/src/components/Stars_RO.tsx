@@ -1,6 +1,4 @@
-// import { EmptyStar } from "./EmptyStar";
-
-export const Stars = ({ starCount, editable }: { starCount: number, editable: boolean }) => {
+export const Stars = ({ starCount }: { starCount: number }) => {
 	const emptyStar = (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +6,8 @@ export const Stars = ({ starCount, editable }: { starCount: number, editable: bo
 			viewBox="0 0 24 24"
 			strokeWidth={1.5}
 			stroke="currentColor"
-			className="size-8 hover:fill-gray-300 hover:cursor-pointer"
+			className="size-8"
+			// className="size-8 hover:fill-gray-300 hover:cursor-pointer"
 		>
 			<path
 				strokeLinecap="round"
@@ -18,7 +17,8 @@ export const Stars = ({ starCount, editable }: { starCount: number, editable: bo
 		</svg>
 	);
 
-	const hoveredStar = (<svg
+	const hoveredStar = (
+		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="currentColor"
 			viewBox="0 0 24 24"

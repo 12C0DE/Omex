@@ -76,6 +76,7 @@ export const ContactUs = () => {
 				<div className="w-full">
 					<textarea
 						className="w-full border-1 border-black max-h-[450px] p-1 font-kanit font-light"
+						maxLength={maxMessageLength}
 						rows={5}
 						{...register('message', {
 							required: 'Message is required',
@@ -119,7 +120,7 @@ export const ContactUs = () => {
 				<div className="w-full flex justify-end">
 					<input
 						type="submit"
-						className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
+						className="bg-black text-white px-4 py-2 hover:bg-blue-700 font-kanit"
 						value={'Send'}
 					/>
 				</div>

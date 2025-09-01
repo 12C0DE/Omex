@@ -1,6 +1,6 @@
 import { useScrollToElement } from '../hooks/useScrollToElement';
 
-export const Menu = ({selected}: any) => {
+export const Menu = ({ selected }: any) => {
 	const scrollToElement = useScrollToElement();
 	const pages = [
 		{
@@ -25,10 +25,10 @@ export const Menu = ({selected}: any) => {
 		},
 	];
 
-    const handleClick = (id: string) => {
-        scrollToElement(id);
-        selected(false);
-    }
+	const handleClick = (id: string) => {
+		scrollToElement(id);
+		selected(false);
+	};
 
 	return (
 		<div className="absolute right-0 top-8 bg-white min-w-[160px] border-1 border-dashed border-black shadow-lg p-2 mr-2">

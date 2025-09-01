@@ -13,7 +13,7 @@ export const Reviews = () => {
 					/>
 				</div>
 			</div>
-			<Fab text="Write a Review" />
+			<Fab text="Write a Review" page="writeReview" />
 		</ScreenContainer>
 	);
 };

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu } from './Menu';
 
 export const Header = () => {
-	const [showMenu, setShowMenu] = useState(true);
+	const [showMenu, setShowMenu] = useState(false);
 	return (
 		<header className="flex flex-row justify-between p-2 sticky top-0 bg-white p-2 border-b border-gray-200">
 			<h1 className="text-sm font-bold">OMEX</h1>

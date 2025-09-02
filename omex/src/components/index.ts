@@ -5,6 +5,7 @@ export * from './Logo';
 export * from './Menu';
 export * from './ProjectCard';
 export * from './ProjectModal';
+export * from './ServicesCard';
 export * from './ScreenContainer';
 export * from './Stars_RO';
 export * from './Title';

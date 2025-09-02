@@ -86,13 +86,29 @@ export const WriteReview = () => {
 								className="border border-gray-300 p-2 font-light text-sm w-full mt-1"
 							/>
 						</div>
-						<div className='flex flex-row gap-1 align-baseline'>
-							<input type="checkbox" style={{height: '24px', width: '24px'}} defaultChecked={true}/>
-							<label className="ml-2 text-[16px] italic"> Display my review pubically</label>
+						<div className="flex flex-row gap-1 align-baseline">
+							<input
+								type="checkbox"
+								style={{ height: '24px', width: '24px' }}
+								defaultChecked={true}
+							/>
+							<label className="ml-2 text-[16px] italic">
+								{' '}
+								Display my review pubically
+							</label>
 						</div>
 						<div className="flex flex-row justify-end mt-4 gap-2">
-							<input type="button" className="bg-gray-200 text-black px-4 py-2  hover:bg-gray-300" value='Cancel' onClick={() => navigate('/')} />
-							<input type="submit" className="bg-black text-white px-4 py-2  hover:hover:bg-blue-700" value='Submit' />
+							<input
+								type="button"
+								className="bg-gray-200 text-black px-4 py-2  hover:bg-gray-300"
+								value="Cancel"
+								onClick={() => navigate('/')}
+							/>
+							<input
+								type="submit"
+								className="bg-black text-white px-4 py-2  hover:hover:bg-blue-700"
+								value="Submit"
+							/>
 						</div>
 					</div>
 				</form>

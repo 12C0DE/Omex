@@ -4,7 +4,7 @@ import { Menu } from './Menu';
 export const Header = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	return (
-		<header className="flex flex-row justify-between p-2 sticky top-0 bg-white p-2 border-b border-gray-200">
+		<header className="flex flex-row justify-between p-2 fixed top-0 right-0 left-0 bg-white p-2 border-b border-gray-200 z-20">
 			<h1 className="text-sm font-bold">OMEX</h1>
 			<div className="flex flex-col justify-end items-end gap-0">
 				<button

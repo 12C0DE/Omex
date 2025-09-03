@@ -54,7 +54,11 @@ export const Stars = ({ starCount }: { starCount: number }) => {
 	return (
 		<div className="flex flex-row gap-1">
 			{[...Array(5)].map((_, index) =>
-				index < starCount ? filledStar : emptyStar,
+				index < starCount ? (
+					<span key={`fillStar_in${index}`}>{filledStar}</span>
+				) : (
+					<span key={`empStar_ind${index}`}>{emptyStar}</span>
+				),
 			)}
 		</div>
 	);

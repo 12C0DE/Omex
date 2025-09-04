@@ -11,7 +11,8 @@ export const Projects = () => {
 	return (
 		<div className="relative">
 			<ScreenContainer>
-				<Title text="Projects" id="projects" />
+				<div id="projects" />
+				<Title text="Projects" id="projects2" />
 				<div className="flex flex-col gap-2">
 					<ProjectCard
 						title="Sample Project 2"

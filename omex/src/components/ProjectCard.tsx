@@ -1,14 +1,10 @@
-type ProjectCardProps = {
-	title: string;
-	description: string;
-	clicked?: () => void;
-};
+import type { ProjectType } from "../types/index";
 
 export const ProjectCard = ({
 	title,
 	description,
 	clicked,
-}: ProjectCardProps) => {
+}: ProjectType) => {
 	return (
 		<div className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 m-2">
 			<svg

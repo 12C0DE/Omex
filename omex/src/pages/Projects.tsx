@@ -19,10 +19,9 @@ export const Projects = () => {
 	const hideProject = () => {
 		setSelectedProject({} as ProjectType);
 		setShowModal(false);
-	}
+	};
 
 	return (
-		<div className="relative">
 			<ScreenContainer>
 				<div id="projects" />
 				<Title text="Projects" id="projects2" />
@@ -30,13 +29,22 @@ export const Projects = () => {
 					<ProjectCard
 						title="Sample Project 02"
 						description="Talk a little about the proj."
-						clicked={() => showProject({title: "Sample Project 2", description: "Longer description to test wrapping. This project involves building a complex web application using React and Node.js."}) as unknown as ProjectType}
+						clicked={() =>
+							showProject({
+								title: 'Sample Project 2',
+								description:
+									'Longer description to test wrapping. This project involves building a complex web application using React and Node.js.',
+							}) as unknown as ProjectType
+						}
 					/>
 				</div>
 				{showModal ? (
-					<ProjectModal open={showModal} closing={hideProject} project={selectedProject}/>
+					<ProjectModal
+						open={showModal}
+						closing={hideProject}
+						project={selectedProject}
+					/>
 				) : null}
 			</ScreenContainer>
-		</div>
 	);
 };

@@ -1,10 +1,6 @@
-import type { ProjectType } from "../types/index";
+import type { ProjectType } from '../types/index';
 
-export const ProjectCard = ({
-	title,
-	description,
-	clicked,
-}: ProjectType) => {
+export const ProjectCard = ({ title, description, clicked }: ProjectType) => {
 	return (
 		<div className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 m-2">
 			<svg

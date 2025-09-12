@@ -1,5 +1,4 @@
 import {
-	Description,
 	Dialog,
 	DialogBackdrop,
 	DialogPanel,
@@ -45,8 +44,15 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 								d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
 							/>
 						</svg>
+						<div className="h-full w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x">
+							{[1,2,3,4,5].map((_, index) => 
+								<div key={`pic${index}`} className="h-[250px] border-1 border-black border-gray snap-center flex-shrink-0 w-[200px] ">
+									<div className="w-full">{`t${index}`}</div>
+								</div>
+							)}
+						</div>
 
-						<DialogTitle className="text-lg font-bold">
+						<DialogTitle className="text-lg font-bold select-none">
 							{project.title}
 						</DialogTitle>
 					</div>

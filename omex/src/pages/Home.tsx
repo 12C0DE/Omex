@@ -19,7 +19,9 @@ export const Home = () => {
 					</p>
 				</div>
 			</ScreenContainer>
+			<div className='snap-y'>
 			<Services />
+			</div>
 			<Projects />
 			<Reviews />
 			<ContactUs />

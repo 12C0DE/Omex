@@ -1,6 +1,6 @@
 export const ServicesCard = ({
 	title,
-	img,
+	// img,
 }: {
 	title: string;
 	img: string;

@@ -7,7 +7,6 @@ export const Stars = ({ starCount }: { starCount: number }) => {
 			strokeWidth={1.5}
 			stroke="currentColor"
 			className="size-8"
-			// className="size-8 hover:fill-gray-300 hover:cursor-pointer"
 		>
 			<path
 				strokeLinecap="round"

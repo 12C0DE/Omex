@@ -3,7 +3,8 @@ import { ContactUs, Projects, Reviews, Services } from './index';
 
 export const Home = () => {
 	return (
-		<div id="home" className="flex flex-col items-center mt-[48px]">
+		// <div id="home" className="flex flex-col items-center mt-[48px] overflow-y-scroll snap-y snap-mandatory">
+		<div id="home" className="h-screen w-screen overflow-y-scroll snap-y snap-mandatory">
 			<ScreenContainer>
 				<Logo />
 				<div className="mt-8">

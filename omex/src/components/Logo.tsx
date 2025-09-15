@@ -6,6 +6,7 @@ export const Logo = () => {
 			viewBox="0 0 177 177"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
+			className="mt-[40px]"
 		>
 			<circle cx="88.5" cy="88.5" r="88.5" fill="#0F0E0E" />
 			<path

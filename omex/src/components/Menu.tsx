@@ -1,7 +1,8 @@
-import { useScrollToElement } from '../hooks/useScrollToElement';
+import { useScroll } from '../context/ScrollContext';
 
 export const Menu = ({ selected }: any) => {
-	const scrollToElement = useScrollToElement();
+	const { scrollToSection } = useScroll();
+
 	const pages = [
 		{
 			id: 'home',
@@ -26,7 +27,7 @@ export const Menu = ({ selected }: any) => {
 	];
 
 	const handleClick = (id: string) => {
-		scrollToElement(id);
+		scrollToSection(id);
 		selected(false);
 	};
 

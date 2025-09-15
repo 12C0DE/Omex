@@ -35,11 +35,11 @@ export const WriteReview = () => {
 	};
 
 	return (
-		<div className="flex flex-col items-center">
-			<ScreenContainer>
+		<div className="flex flex-col">
+			<ScreenContainer idName='writeReview'>
 				<Title text="Write a Review" id="writeReview" />
 				<form
-					className="flex flex-col gap-4 mt-8 w-full font-kanit tracking-wide text-xl"
+					className="flex flex-col gap-4 mt-8 w-full font-kanit tracking-wide text-xl max-w-lg"
 					onSubmit={handleSubmit(onSubmit)}
 				>
 					<div className="flex flex-col gap-2 mx-4 md:mx-0">

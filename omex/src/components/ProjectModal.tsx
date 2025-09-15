@@ -45,11 +45,14 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 							/>
 						</svg>
 						<div className="h-full w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory">
-							{[1,2,3,4,5].map((_, index) => 
-								<div key={`pic${index}`} className="h-[500px] border-1 border-black border-gray snap-center flex-shrink-0 w-[400px] ">
+							{[1, 2, 3, 4, 5].map((_, index) => (
+								<div
+									key={`pic${index}`}
+									className="h-[500px] border-1 border-black border-gray snap-center flex-shrink-0 w-[400px] "
+								>
 									<div className="w-full">{`t${index}`}</div>
 								</div>
-							)}
+							))}
 						</div>
 
 						<DialogTitle className="text-lg font-bold select-none">

@@ -29,11 +29,10 @@ export const ContactUs = () => {
 	};
 
 	return (
-		<ScreenContainer>
-			<div id="contactus" />
+		<ScreenContainer idName="contactus">
 			<Title text="Contact Us" id="contactus2" />
 			<form
-				className="flex flex-col items-center mt-8 gap-4"
+				className="flex flex-col items-center mt-8 gap-4 "
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<div className="flex flex-row align-center gap-4">

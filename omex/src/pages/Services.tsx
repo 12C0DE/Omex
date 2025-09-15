@@ -2,10 +2,9 @@ import { ScreenContainer, ServicesCard, Title } from '../components';
 
 export const Services = () => {
 	return (
-		<ScreenContainer>
-			<div id="services" />
+		<ScreenContainer idName="services">
 			<Title id="services2" text="Services" />
-			<div className="flex flex-col gap-2 w-full snap-center">
+			<div className="flex flex-col gap-2 w-full lg:w-lg">
 				<ServicesCard title="Drywall" img="" />
 				<ServicesCard title="Framing" img="" />
 				<ServicesCard title="Finishing" img="" />

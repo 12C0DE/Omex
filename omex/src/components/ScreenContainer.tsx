@@ -1,11 +1,16 @@
 export const ScreenContainer = ({
 	children,
+	idName,
 }: {
 	children: React.ReactNode;
+	idName: string;
 }) => {
 	return (
-		<div className="h-screen w-full flex items-center justify-center bg-red-400 snap-start">
+		<section
+			id={idName}
+			className="h-screen flex flex-col items-center snap-start"
+		>
 			{children}
-		</div>
+		</section>
 	);
 };

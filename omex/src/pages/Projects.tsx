@@ -22,10 +22,9 @@ export const Projects = () => {
 	};
 
 	return (
-		<ScreenContainer>
-			<div id="projects" />
+		<ScreenContainer idName="projects">
 			<Title text="Projects" id="projects2" />
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-2 w-full mx-0 lg:w-lg lg:mx-2">
 				<ProjectCard
 					title="Sample Project 02"
 					description="Talk a little about the proj."

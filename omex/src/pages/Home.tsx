@@ -8,7 +8,9 @@ export const Home = () => {
 	return (
 		<div
 			ref={containerRef}
-			className="h-screen snap-y snap-mandatory scroll-smooth m-auto"
+			// className="h-screen snap-y snap-mandatory scroll-smooth m-auto"
+			className="h-screen snap-y snap-mandatory scroll-smooth m-auto bg-cover bg-center bg-fixed"
+			style={{ backgroundImage: "url('/images/OIU9N80.jpg')" }}
 		>
 			<ScreenContainer idName="home">
 				<Logo />

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
 type Options = {
-  // accept either a scroll container element, a ref to one, or null to indicate document
-  container?: HTMLElement | Document | React.RefObject<HTMLElement | null> | null;
+  // accept either a scroll container element or null to indicate document
+  container?: HTMLElement | Document | null;
   timeout?: number; // ms
 };
 
@@ -10,15 +10,13 @@ export function useWheelSnap({ container, timeout = 600 }: Options) {
   const last = useRef<number>(0);
 
   useEffect(() => {
-    // resolve container if a ref was passed
-    const resolved =
-      container && 'current' in (container as any) ? (container as any).current : (container ?? document);
-    const root: HTMLElement | Document | null = resolved ?? null;
-    if (!root) return;
+    const root: HTMLElement | Document = container ?? document;
 
     function findSections() {
-      if (!root) return [] as HTMLElement[];
-      const nodeList = root instanceof Document ? root.querySelectorAll('section[id]') : root.querySelectorAll('section[id]');
+      const nodeList =
+        root instanceof Document
+          ? root.querySelectorAll('section[id]')
+          : root.querySelectorAll('section[id]');
       const els = Array.from(nodeList) as HTMLElement[];
       return els.filter((el) => !!el.offsetParent);
     }
@@ -82,8 +80,7 @@ export function useWheelSnap({ container, timeout = 600 }: Options) {
       touchStartY = null;
     }
 
-  const listenerTarget = root instanceof Document ? window : (root as HTMLElement);
-  if (!listenerTarget) return;
+    const listenerTarget = root instanceof Document ? window : (root as HTMLElement);
     listenerTarget.addEventListener('wheel', onWheel as any, { passive: true });
     listenerTarget.addEventListener('touchstart', onTouchStart as any, { passive: true });
     listenerTarget.addEventListener('touchend', onTouchEnd as any, { passive: true });
@@ -92,10 +89,5 @@ export function useWheelSnap({ container, timeout = 600 }: Options) {
       listenerTarget.removeEventListener('touchstart', onTouchStart as any);
       listenerTarget.removeEventListener('touchend', onTouchEnd as any);
     };
-  // re-run when the ref's current changes (if a ref was passed) or when a direct container changes
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    container && 'current' in (container as any) ? (container as any).current : container,
-    timeout,
-  ]);
+  }, [container, timeout]);
 }

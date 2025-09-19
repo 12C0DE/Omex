@@ -27,12 +27,14 @@ export const Menu = ({ selected }: any) => {
 	];
 
 	const handleClick = (id: string) => {
-		scrollToSection(id);
+		// close menu first so layout changes don't cancel the smooth scroll
 		selected(false);
+		// run scroll slightly after closing to allow DOM/animation to settle
+		setTimeout(() => scrollToSection(id), 60);
 	};
 
 	return (
-		<div className="absolute right-0 top-8 bg-white min-w-[160px] border-1 border-dashed border-black shadow-lg p-2 mr-2">
+		<div className="absolute right-0 top-8 bg-white/90 min-w-[160px] border-1 border-dashed border-black shadow-lg p-2 mr-2 backdrop-blur-sm">
 			<ul className="flex flex-col gap-4 font-kanit text-md">
 				{pages.map((page) => (
 					<li

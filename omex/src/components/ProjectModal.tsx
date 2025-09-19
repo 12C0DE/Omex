@@ -26,7 +26,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 			<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
 				<DialogPanel
 					transition
-					className="max-w-lg space-y-4 bg-white p-12 duration-300 ease-out data-closed:scale-95 data-closed:opacity-0 relative rounded-sm"
+					className="max-w-lg space-y-4 bg-white/95 p-12 duration-300 ease-out data-closed:scale-95 data-closed:opacity-0 relative rounded-sm backdrop-blur-sm"
 				>
 					<div>
 						<svg

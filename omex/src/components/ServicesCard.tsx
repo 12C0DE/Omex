@@ -6,7 +6,7 @@ export const ServicesCard = ({
 	img: string;
 }) => {
 	return (
-		<div className="border-1 border-gray-200 border-black p-4 w-full flex justify-end items-end min-h-[120px]">
+		<div className="bg-white border-1 border-gray-200 border-black p-4 w-full flex justify-end items-end min-h-[120px]">
 			<h3 className="text-md font-bold mb-2 font-kanit tracking-wider font-medium">
 				{title}
 			</h3>

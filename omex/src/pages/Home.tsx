@@ -13,13 +13,14 @@ export const Home = () => {
 
 	return (
 		<div
-				ref={containerRef}
-				className="min-h-screen snap-y snap-mandatory snap-always scroll-smooth m-auto bg-cover bg-center bg-fixed"
-				style={{
-					backgroundImage:
-						"radial-gradient(circle at center, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.74) 60%, rgba(255, 255, 255, 0.28) 95%), url('/images/OIU9N80.jpg')",
-				}}
-			>
+			ref={containerRef}
+			className="min-h-screen snap-y snap-mandatory scroll-smooth m-auto bg-cover bg-center bg-fixed"
+			style={{
+				backgroundImage:
+					// "linear-gradient(to right, rgba(255,255,255,1) 40%, rgba(255,255,255,0.74) 60%, rgba(255,255,255,0.28) 95%, rgba(255,255,255,0)), url('/images/OIU9N80.jpg')",
+					"linear-gradient(to right,  rgba(240, 240, 240, 0.46) 10%, rgba(255, 255, 255, 0.97) 20%, rgba(255, 255, 255, 1) 80%, rgba(240, 240, 240, 0.46)), url('/images/OIU9N80.jpg')",
+			}}
+		>
 			<ScreenContainer idName="home">
 				<Logo />
 				<div className="mt-8">

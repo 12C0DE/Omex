@@ -31,8 +31,8 @@ export const Home = () => {
 					</p>
 				</div>
 			</ScreenContainer>
-			<Services />
 			<Projects />
+			<Services />
 			<Reviews />
 			<ContactUs />
 		</div>

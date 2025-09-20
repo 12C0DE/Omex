@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EditStars, ScreenContainer, Title } from '../components/index';
+import { Button } from '@headlessui/react';
 
 type SendReviewForm = {
 	email: string;
@@ -100,15 +101,16 @@ export const WriteReview = () => {
 						<div className="flex flex-row justify-end mt-4 gap-2">
 							<input
 								type="button"
-								className="bg-gray-200 text-black px-4 py-2  hover:bg-gray-300"
+								className="px-4 py-2  hover:bg-gray-500"
 								value="Cancel"
 								onClick={() => navigate('/')}
 							/>
-							<input
+							{/* <input
 								type="submit"
-								className="bg-black text-white px-4 py-2  hover:hover:bg-blue-700"
+								className="px-4 py-2  hover:hover:bg-blue-700"
 								value="Submit"
-							/>
+							/> */}
+							<Button type="submit" className="px-4 py-2  hover:hover:bg-blue-700 border-1">Submit</Button>
 						</div>
 					</div>
 				</form>

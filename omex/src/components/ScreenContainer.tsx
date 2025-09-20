@@ -8,7 +8,7 @@ export const ScreenContainer = ({
 	return (
 		<section
 			id={idName}
-			className="h-screen flex flex-col items-center snap-start"
+			className="h-screen max-h-screen flex flex-col items-center snap-start mx-1 lg:mx-0"
 		>
 			{children}
 		</section>

@@ -36,7 +36,6 @@ export const UserReview = ({
 			</div>
 			<p className="text-sm font-kanit text-light">{reviewMessage}</p>
 			<div className="flex flex-row gap-2">
-				{/* Example thumbnails, replace with your image URLs */}
 				{imgLinks?.map((src, idx) => (
 					<img
 						key={idx}

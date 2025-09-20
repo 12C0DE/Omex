@@ -3,9 +3,8 @@
 @import "tailwindcss";
 
 @theme {
-
-/* } */
-/* :root { */
+	/* } */
+	/* :root { */
 	--font-aleo: "Aleo", serif;
 	--font-kanit: "Kanit", sans-serif;
 }

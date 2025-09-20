@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { ScreenContainer, Title } from '../components/index';
+import { Button } from '@headlessui/react';
+import { useTheme } from '../context/ThemeContext';
 
 type SendMessageForm = {
 	email: string;
@@ -8,6 +10,7 @@ type SendMessageForm = {
 };
 
 export const ContactUs = () => {
+	const { theme } = useTheme();
 	const maxMessageLength = 500;
 	const {
 		register,
@@ -65,7 +68,7 @@ export const ContactUs = () => {
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
 					>
-						<line y1="0.5" x2="329" y2="0.5" stroke="black" />
+						<line y1="0.5" x2="329" y2="0.5" stroke="currentColor" />
 					</svg>
 				</div>
 				<div>
@@ -73,9 +76,9 @@ export const ContactUs = () => {
 						Write Us
 					</h5>
 				</div>
-				<div className="w-full">
+				<div className="w-7/8 lg:w-full">
 					<textarea
-						className="w-full border-1 border-black max-h-[450px] p-1 font-kanit font-light"
+						className="w-full border-1 max-h-[350px] p-1 font-kanit font-light"
 						maxLength={maxMessageLength}
 						rows={5}
 						{...register('message', {
@@ -99,10 +102,10 @@ export const ContactUs = () => {
 				<label className="self-start font-kanit text-medium" htmlFor="email">
 					Your Email (required)
 				</label>
-				<div className="w-100">
+				<div className="w-7/8 lg:w-full">
 					<input
 						type="email"
-						className="w-full border-1 border-black font-kanit font-light px-1"
+						className="w-full border-1 font-kanit font-light px-1"
 						{...register('email', {
 							required: 'Email is required',
 							pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -118,11 +121,17 @@ export const ContactUs = () => {
 					)}
 				</div>
 				<div className="w-full flex justify-end">
-					<input
+					<Button
 						type="submit"
-						className="bg-black text-white px-4 py-2 hover:bg-blue-700 font-kanit"
-						value={'Send'}
-					/>
+						className="px-4 py-2 hover:bg-blue-700 font-kanit w-[136px]"
+						style={
+							theme === 'dark'
+								? { backgroundColor: '#f2f2f2ff', color: '#000000ff' }
+								: { backgroundColor: '#121212ff', color: '#ffffffff' }
+						}
+					>
+						Send
+					</Button>
 				</div>
 			</form>
 		</ScreenContainer>

@@ -6,12 +6,13 @@ export const Header = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const { theme, toggle } = useTheme();
 	return (
-		<header className="flex flex-row justify-between p-2 fixed top-2 right-0 left-0 p-2 z-20 bg-transparent">
+		<header className="flex flex-row justify-between fixed top-1 right-0 left-0 p-2 z-20 bg-transparent">
 			<h1 className="text-sm font-bold ml-2">OMEX</h1>
-			<div className="flex flex-row justify-end items-end gap-1 bg-transparent">
+			<div className="flex flex-row justify-end items-center gap-0 bg-transparent">
 				{/* theme toggle */}
 				<button
-					className="mr-2 px-3 py-1 rounded-full border"
+					className="mr-2 px-2 py-1 rounded-full border"
+					style={theme === 'dark' ? { backgroundColor: 'black' } : { backgroundColor: 'white' }}
 					onClick={toggle}
 					aria-label="Toggle theme"
 				>

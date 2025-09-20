@@ -36,7 +36,7 @@ export const Projects = () => {
 						}) as unknown as ProjectType
 					}
 				/>
-				<ProjectCard
+				{/* <ProjectCard
 					title="Sample Project 02"
 					description="Talk a little about the proj."
 					clicked={() =>
@@ -46,7 +46,7 @@ export const Projects = () => {
 								'Longer description to test wrapping. This project involves building a complex web application using React and Node.js.',
 						}) as unknown as ProjectType
 					}
-				/>
+				/> */}
 			</div>
 			{showModal ? (
 				<ProjectModal

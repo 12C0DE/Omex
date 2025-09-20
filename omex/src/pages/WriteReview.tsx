@@ -36,7 +36,7 @@ export const WriteReview = () => {
 
 	return (
 		<div className="flex flex-col">
-			<ScreenContainer idName='writeReview'>
+			<ScreenContainer idName="writeReview">
 				<Title text="Write a Review" id="writeReview" />
 				<form
 					className="flex flex-col gap-4 mt-8 w-full font-kanit tracking-wide text-xl max-w-lg"

@@ -34,7 +34,8 @@ export const Menu = ({ selected }: any) => {
 	};
 
 	return (
-		<div className="absolute right-0 top-8 bg-white/90 min-w-[160px] border-1 border-dashed border-black shadow-lg p-2 mr-2 backdrop-blur-sm">
+		// <div className="absolute right-0 top-8 bg-white/90 min-w-[160px] border-1 border-dashed border-black shadow-lg p-2 mr-2 backdrop-blur-sm">
+		<div className="absolute right-0 top-9 min-w-[160px] border-1 border-dashed shadow-lg p-2 mr-6 ">
 			<ul className="flex flex-col gap-4 font-kanit text-md">
 				{pages.map((page) => (
 					<li

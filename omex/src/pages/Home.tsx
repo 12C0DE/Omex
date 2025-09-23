@@ -1,14 +1,20 @@
 import { useRef } from 'react';
 import { Logo, ScreenContainer } from '../components';
 import { ContactUs, Projects, Reviews, Services } from './index';
+import { useWheelSnap } from '../hooks/useWheelSnap';
+import { useScroll } from '../context/ScrollContext';
 
 export const Home = () => {
 	const containerRef = useRef<HTMLDivElement | null>(null);
+	const { containerRef: providerRef } = useScroll();
+
+	// prefer the provider's ref if available (the scroll container in ScrollProvider)
+	useWheelSnap({ container: providerRef?.current ?? containerRef.current });
 
 	return (
 		<div
 			ref={containerRef}
-			className="h-screen snap-y snap-mandatory scroll-smooth m-auto"
+			className="min-h-screen snap-y snap-mandatory scroll-smooth m-auto bg-white lg:[background-image:linear-gradient(to right, rgba(240,240,240,0.46) 10%, rgba(255,255,255,0.97) 20%, rgba(255,255,255,1) 80%, rgba(240,240,240,0.46)),url('/images/OIU9N80.jpg')] lg:bg-cover lg:bg-center lg:bg-fixed"
 		>
 			<ScreenContainer idName="home">
 				<Logo />
@@ -25,8 +31,8 @@ export const Home = () => {
 					</p>
 				</div>
 			</ScreenContainer>
-			<Services />
 			<Projects />
+			<Services />
 			<Reviews />
 			<ContactUs />
 		</div>

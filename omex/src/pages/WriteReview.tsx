@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EditStars, ScreenContainer, Title } from '../components/index';
+import { Button } from '@headlessui/react';
+import { useTheme } from '../context/ThemeContext';
 
 type SendReviewForm = {
 	email: string;
@@ -10,6 +12,7 @@ type SendReviewForm = {
 };
 
 export const WriteReview = () => {
+	const { theme } = useTheme();
 	const navigate = useNavigate();
 	const maxMessageLength = 255;
 	const {
@@ -36,7 +39,7 @@ export const WriteReview = () => {
 
 	return (
 		<div className="flex flex-col">
-			<ScreenContainer idName='writeReview'>
+			<ScreenContainer idName="writeReview">
 				<Title text="Write a Review" id="writeReview" />
 				<form
 					className="flex flex-col gap-4 mt-8 w-full font-kanit tracking-wide text-xl max-w-lg"
@@ -98,17 +101,23 @@ export const WriteReview = () => {
 							</label>
 						</div>
 						<div className="flex flex-row justify-end mt-4 gap-2">
-							<input
-								type="button"
-								className="bg-gray-200 text-black px-4 py-2  hover:bg-gray-300"
-								value="Cancel"
+							<Button
+								className="px-4 py-2  hover:bg-gray-500"
 								onClick={() => navigate('/')}
-							/>
-							<input
+							>
+								Cancel
+							</Button>
+							<Button
 								type="submit"
-								className="bg-black text-white px-4 py-2  hover:hover:bg-blue-700"
-								value="Submit"
-							/>
+								style={
+									theme === 'dark'
+										? { backgroundColor: '#fff', color: '#000' }
+										: { backgroundColor: '#000000ff', color: '#eee' }
+								}
+								className="px-4 py-2 hover:hover:bg-blue-700"
+							>
+								Submit
+							</Button>
 						</div>
 					</div>
 				</form>

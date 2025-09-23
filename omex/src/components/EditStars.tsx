@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 export const EditStars = () => {
 	const [starCount, setStarCount] = useState(0);
 	const [hoveredStar, setHoveredStar] = useState(0);
+	const { theme } = useTheme();
 
 	const handleMouseEnter = (index: number) => {
 		setHoveredStar(index);
@@ -19,7 +21,7 @@ export const EditStars = () => {
 	const emptyStar = (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			fill="#d1d1d1"
+			fill={theme === 'dark' ? '#6a6a6aff' : '#d1d1d1'}
 			viewBox="0 0 24 24"
 			strokeWidth={1.5}
 			stroke="#d1d1d1"

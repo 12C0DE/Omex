@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 
 type ScrollContextType = {
 	scrollToSection: (id: string, offset?: number) => void;
+	// expose the scroll container ref so other hooks/components can scope listeners
+	containerRef: React.RefObject<HTMLDivElement | null>;
 };
 
 const ScrollContext = createContext<ScrollContextType | undefined>(undefined);
@@ -22,7 +24,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
 	};
 
 	return (
-		<ScrollContext.Provider value={{ scrollToSection }}>
+		<ScrollContext.Provider value={{ scrollToSection, containerRef }}>
 			<div
 				ref={containerRef}
 				className="flex-1 overflow-y-scroll snap-y snap-mandatory"

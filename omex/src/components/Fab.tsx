@@ -1,13 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { Button } from '@headlessui/react';
 
-export const Fab = ({ text, page }: { text: string; page: string }) => {
+export const Fab = ({ text, open }: { text: string; open: () => void }) => {
 	const { theme } = useTheme();
-	const navigate = useNavigate();
-	const handleClick = () => {
-		navigate(`/${page}`);
-	};
 
 	const style =
 		theme === 'dark'
@@ -18,7 +13,7 @@ export const Fab = ({ text, page }: { text: string; page: string }) => {
 		<Button
 			className="self-end mr-2 font-sm font-kanit p-4 shadow-lg hover:bg-blue-700 transition"
 			style={style}
-			onClick={() => handleClick()}
+			onClick={open}
 		>
 			{text}
 		</Button>

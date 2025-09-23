@@ -1,5 +1,8 @@
-import { Fab, ScreenContainer, Title, UserReview } from '../components/index';
+import { useState } from 'react';
+import { Fab, ReviewModal, ScreenContainer, Title, UserReview } from '../components/index';
 export const Reviews = () => {
+	const [ showModal, setShowModal ] = useState(false);
+
 	return (
 		<ScreenContainer idName="reviews">
 			<Title text="Reviews" id="reviews2" />
@@ -17,8 +20,9 @@ export const Reviews = () => {
 			</div>
 			{/* </div> */}
 			<div className="w-full max-w-lg flex justify-end">
-				<Fab text="Write a Review" page="writeReview" />
+				<Fab text="Write a Review" open={() => setShowModal(true)} />
 			</div>
+			{showModal ? (<ReviewModal open={showModal} closing={() => setShowModal(false)} />) : null}
 		</ScreenContainer>
 	);
 };

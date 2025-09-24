@@ -13,6 +13,14 @@ type ProjectModalProps = {
 	project: ProjectType;
 };
 
+const picArray = [
+	'/images/projects/1/wsu1.jpg',
+	'/images/projects/1/wsu2.jpg',
+	'/images/projects/1/wsu3.jpg',
+	'/images/projects/1/wsu4.jpg',
+	'/images/projects/1/wsu5.jpg',
+];
+
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();
 	return (
@@ -60,12 +68,14 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 							/>
 						</svg>
 						<div className="h-full w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory">
-							{[1, 2, 3, 4, 5].map((_, index) => (
+							{/* {[1, 2, 3, 4, 5].map((_, index) => ( */}
+							{picArray.map((pic, index) => (
 								<div
 									key={`pic${index}`}
-									className="h-[500px] border-1 border-black border-gray snap-center flex-shrink-0 w-7/8 max-w-[400px] mx-0 lg:mx-2 "
+									className="snap-center flex-shrink-0 w-7/8 max-w-[600px] mx-0 lg:mx-2 object-fit"
 								>
-									<div className="w-full">{`t${index}`}</div>
+									{/* <div className="w-full">{`t${index}`}</div> */}
+									<div className="w-full"><img src={pic} /></div>
 								</div>
 							))}
 						</div>

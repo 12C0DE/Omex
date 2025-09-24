@@ -8,7 +8,7 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import { EditStars, ScreenContainer, Title } from '../components/index';
+import { EditStars } from '../components/index';
 
 type ReviewModalProps = {
 	open: boolean;

@@ -12,7 +12,11 @@ export const Header = () => {
 				{/* theme toggle */}
 				<button
 					className="mr-2 px-2 py-1 rounded-full border"
-					style={theme === 'dark' ? { backgroundColor: 'black' } : { backgroundColor: 'white' }}
+					style={
+						theme === 'dark'
+							? { backgroundColor: 'black' }
+							: { backgroundColor: 'white' }
+					}
 					onClick={toggle}
 					aria-label="Toggle theme"
 				>

@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import { Fab, ReviewModal, ScreenContainer, Title, UserReview } from '../components/index';
+import {
+	Fab,
+	ReviewModal,
+	ScreenContainer,
+	Title,
+	UserReview,
+} from '../components/index';
 export const Reviews = () => {
-	const [ showModal, setShowModal ] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
 	return (
 		<ScreenContainer idName="reviews">
@@ -22,7 +28,9 @@ export const Reviews = () => {
 			<div className="w-full max-w-lg flex justify-end">
 				<Fab text="Write a Review" open={() => setShowModal(true)} />
 			</div>
-			{showModal ? (<ReviewModal open={showModal} closing={() => setShowModal(false)} />) : null}
+			{showModal ? (
+				<ReviewModal open={showModal} closing={() => setShowModal(false)} />
+			) : null}
 		</ScreenContainer>
 	);
 };

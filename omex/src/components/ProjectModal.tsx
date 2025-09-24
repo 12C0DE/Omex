@@ -75,7 +75,9 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 									className="snap-center flex-shrink-0 w-7/8 max-w-[600px] mx-0 lg:mx-2 object-fit"
 								>
 									{/* <div className="w-full">{`t${index}`}</div> */}
-									<div className="w-full"><img src={pic} /></div>
+									<div className="w-full">
+										<img src={pic} />
+									</div>
 								</div>
 							))}
 						</div>

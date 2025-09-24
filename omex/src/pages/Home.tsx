@@ -14,15 +14,10 @@ export const Home = () => {
 	return (
 		<div
 			ref={containerRef}
-			className="min-h-screen snap-y snap-mandatory scroll-smooth m-auto bg-white lg:[background-image:linear-gradient(to right, rgba(240,240,240,0.46) 10%, rgba(255,255,255,0.97) 20%, rgba(255,255,255,1) 80%, rgba(240,240,240,0.46)),url('/images/OIU9N80.jpg')] lg:bg-cover lg:bg-center lg:bg-fixed"
+			className="min-h-screen snap-y snap-mandatory scroll-smooth m-auto bg-white lg:bg-cover lg:bg-center lg:bg-fixed"
 		>
 			<ScreenContainer idName="home">
 				<Logo />
-				<div className="mt-8">
-					<h5 className="text-center text-gray-500 font-aleo tracking-wide">
-						Welcome to Omex.
-					</h5>
-				</div>
 				<div className="mt-8 max-w-lg">
 					<p className="px-2 md:px-0 md:line-clamp-3 font-kanit font-light">
 						Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet

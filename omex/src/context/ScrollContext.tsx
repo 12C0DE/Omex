@@ -18,8 +18,11 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
 
 		const section = document.getElementById(id);
 		if (section) {
-			const top = section.offsetTop - offset;
-			container.scrollTo({ top, behavior: 'smooth' });
+			// compute position of section relative to the scroll container
+			const containerRect = container.getBoundingClientRect();
+			const sectionRect = section.getBoundingClientRect();
+			const relativeTop = sectionRect.top - containerRect.top + container.scrollTop - offset;
+			container.scrollTo({ top: relativeTop, behavior: 'smooth' });
 		}
 	};
 

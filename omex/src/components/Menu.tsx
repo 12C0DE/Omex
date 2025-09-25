@@ -1,8 +1,8 @@
-import { useScroll } from '../context/ScrollContext';
+import { useScrollToElement } from '../hooks/useScrollToElement';
 import { useTheme } from '../context/ThemeContext';
 
 export const Menu = ({ selected }: any) => {
-	const { scrollToSection } = useScroll();
+	const scrollToElement = useScrollToElement();
 	const { theme } = useTheme();
 
 	const pages = [
@@ -28,16 +28,14 @@ export const Menu = ({ selected }: any) => {
 		},
 	];
 
-	const handleClick = (id: string) => {
-		// close menu first so layout changes don't cancel the smooth scroll
-		// selected(false);
-		// run scroll slightly after closing to allow DOM/animation to settle
-		setTimeout(() => scrollToSection(id), 60);
-		selected(false);
-	};
+
+	 const handleClick = (id: string) => {
+        scrollToElement(id);
+        selected(false);
+    };
 
 	return (
-		// <div className="absolute right-0 top-8 bg-white/90 min-w-[160px] border-1 border-dashed border-black shadow-lg p-2 mr-2 backdrop-blur-sm">
+
 		<div
 			style={
 				theme === 'dark'

@@ -90,7 +90,7 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 						</svg>
 					</div>
 					<div className="flex flex-col justify-center align-center">
-						<DialogTitle className="text-2xl font-bold">
+						<DialogTitle className="text-2xl font-bold font-aleo tracking-wide text-center">
 							Submit a Review
 						</DialogTitle>
 						<form

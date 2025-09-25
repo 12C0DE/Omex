@@ -8,13 +8,13 @@ export const Logo = () => {
 				<img
 					src="/images/omex_logo_solo_gradient_bg_wText.svg"
 					alt="Omex Logo"
-					className="h-24 w-24 mt-10 md:h-32 md:w-32 lg:h-48 lg:w-48"
+					className="h-64 w-64 mt-10"
 				/>
 			) : (
 				<img
 					src="/images/omex_logo_solo_gradient_bg_wText_Dark.svg"
 					alt="Omex Logo"
-					className="h-24 w-24 mt-10 md:h-32 md:w-32 lg:h-48 lg:w-48"
+					className="h-64 w-64 mt-10"
 				/>
 			)}
 		</div>

@@ -18,13 +18,15 @@ export const Home = () => {
 		>
 			<ScreenContainer idName="home">
 				<div className="flex flex-col gap-8">
-				<Logo />
-				<div className="mt-12 max-w-lg">
-					<h1 className="px-2 md:px-0 md:line-clamp-3 font-kanit text-2xl md:text-3xl lg:text-4xl text-center font-semibold tracking-wide">
-						Building your vision,
-					</h1>
-					<h1 className="px-2 md:px-0 md:line-clamp-3 font-kanit text-2xl md:text-3xl lg:text-4xl text-center font-semibold tracking-wide">one project at a time.</h1>
-				</div>
+					<Logo />
+					<div className="mt-12 max-w-lg">
+						<h1 className="px-2 md:px-0 md:line-clamp-3 font-kanit text-2xl md:text-3xl lg:text-4xl text-center font-semibold tracking-wide">
+							Building your vision,
+						</h1>
+						<h1 className="px-2 md:px-0 md:line-clamp-3 font-kanit text-2xl md:text-3xl lg:text-4xl text-center font-semibold tracking-wide">
+							one project at a time.
+						</h1>
+					</div>
 				</div>
 			</ScreenContainer>
 			<Projects />

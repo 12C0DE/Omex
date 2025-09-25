@@ -11,12 +11,12 @@ export const Menu = ({ selected }: any) => {
 			name: 'Home',
 		},
 		{
-			id: 'services',
-			name: 'Services',
-		},
-		{
 			id: 'projects',
 			name: 'Projects',
+		},
+		{
+			id: 'services',
+			name: 'Services',
 		},
 		{
 			id: 'reviews',
@@ -28,14 +28,12 @@ export const Menu = ({ selected }: any) => {
 		},
 	];
 
-
-	 const handleClick = (id: string) => {
-        scrollToElement(id);
-        selected(false);
-    };
+	const handleClick = (id: string) => {
+		scrollToElement(id);
+		selected(false);
+	};
 
 	return (
-
 		<div
 			style={
 				theme === 'dark'

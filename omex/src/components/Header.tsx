@@ -7,7 +7,8 @@ export const Header = () => {
 	const { theme, toggle } = useTheme();
 	return (
 		<header className="flex flex-row justify-between fixed top-1 right-0 left-0 p-2 z-20 bg-transparent">
-			<h1 className="text-sm font-bold ml-2">OMEX</h1>
+			<input type="button" className="hover:cursor-pointer transition ext-sm font-bold ml-2" aria-label="Home Button" value={"OMEX"} onClick={() => (window.location.href = "/")}/>
+
 			<div className="flex flex-row justify-end items-center gap-0 bg-transparent">
 				{/* theme toggle */}
 				<button

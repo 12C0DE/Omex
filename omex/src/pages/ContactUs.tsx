@@ -124,7 +124,7 @@ export const ContactUs = () => {
 			<div className="w-full max-w-lg flex justify-end mt-8 mb-8">
 				<Button
 					type="submit"
-					className="px-4 py-2 hover:bg-blue-700 font-kanit w-[136px]"
+					className="p-4 hover:bg-blue-700 font-kanit w-[136px]"
 					style={
 						theme === 'dark'
 							? { backgroundColor: '#f2f2f2ff', color: '#000000ff' }

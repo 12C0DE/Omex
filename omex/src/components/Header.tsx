@@ -9,7 +9,7 @@ export const Header = () => {
 		<header className="flex flex-row justify-between fixed top-1 right-0 left-0 p-2 z-20 bg-transparent">
 			<input
 				type="button"
-				className="hover:cursor-pointer transition ext-sm font-bold ml-2"
+				className="hover:cursor-pointer transition font-header text-lg tracking-wider ml-2"
 				aria-label="Home Button"
 				value={'OMEX'}
 				onClick={() => (window.location.href = '/')}

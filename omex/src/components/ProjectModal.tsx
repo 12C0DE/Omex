@@ -68,13 +68,11 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 							/>
 						</svg>
 						<div className="w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory">
-							{/* {[1, 2, 3, 4, 5].map((_, index) => ( */}
 							{picArray.map((pic, index) => (
 								<div
 									key={`pic${index}`}
 									className="snap-center flex-shrink-0 w-7/8 max-w-[600px] mx-0 lg:mx-2 object-fit"
 								>
-									{/* <div className="w-full">{`t${index}`}</div> */}
 									<div className="w-full p-1">
 										<img src={pic} />
 									</div>

@@ -120,20 +120,20 @@ export const ContactUs = () => {
 						</p>
 					)}
 				</div>
-				<div className="w-full flex justify-end">
-					<Button
-						type="submit"
-						className="px-4 py-2 hover:bg-blue-700 font-kanit w-[136px]"
-						style={
-							theme === 'dark'
-								? { backgroundColor: '#f2f2f2ff', color: '#000000ff' }
-								: { backgroundColor: '#121212ff', color: '#ffffffff' }
-						}
-					>
-						Send
-					</Button>
-				</div>
 			</form>
+			<div className="w-full max-w-lg flex justify-end mt-8 mb-8">
+				<Button
+					type="submit"
+					className="px-4 py-2 hover:bg-blue-700 font-kanit w-[136px]"
+					style={
+						theme === 'dark'
+							? { backgroundColor: '#f2f2f2ff', color: '#000000ff' }
+							: { backgroundColor: '#121212ff', color: '#ffffffff' }
+					}
+				>
+					Send
+				</Button>
+			</div>
 		</ScreenContainer>
 	);
 };

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Logo, ScreenContainer } from '../components';
 import { ContactUs, Projects, Reviews, Services } from './index';
 import { useWheelSnap } from '../hooks/useWheelSnap';
@@ -11,10 +11,27 @@ export const Home = () => {
 	// prefer the provider's ref if available (the scroll container in ScrollProvider)
 	useWheelSnap({ container: providerRef?.current ?? containerRef.current });
 
+	// track viewport height so the class updates on resize / orientation change
+	const [isTall, setIsTall] = useState(() =>
+		typeof window !== 'undefined' ? window.innerHeight > 700 : false,
+	);
+
+	useEffect(() => {
+		if (typeof window === 'undefined') return;
+		const onResize = () => setIsTall(window.innerHeight > 700);
+		onResize();
+		window.addEventListener('resize', onResize);
+		window.addEventListener('orientationchange', onResize);
+		return () => {
+			window.removeEventListener('resize', onResize);
+			window.removeEventListener('orientationchange', onResize);
+		};
+	}, []);
+
 	return (
 		<div
 			ref={containerRef}
-			className="min-h-screen snap-y snap-mandatory scroll-smooth m-auto bg-white lg:bg-cover lg:bg-center lg:bg-fixed"
+			className={`m-auto ${isTall ? ' min-h-screen snap-y snap-mandatory scroll-smooth' : ''}`}
 		>
 			<ScreenContainer idName="home">
 				<div className="flex flex-col gap-8">

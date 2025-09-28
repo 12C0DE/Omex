@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 export const ScreenContainer = ({
 	children,
 	idName,
@@ -5,10 +7,28 @@ export const ScreenContainer = ({
 	children: React.ReactNode;
 	idName: string;
 }) => {
+	const [isTall, setIsTall] = useState(() =>
+		typeof window !== 'undefined' ? window.innerHeight > 700 : false,
+	);
+
+	useEffect(() => {
+		if (typeof window === 'undefined') return;
+		const onResize = () => setIsTall(window.innerHeight > 700);
+		onResize();
+		window.addEventListener('resize', onResize);
+		window.addEventListener('orientationchange', onResize);
+		return () => {
+			window.removeEventListener('resize', onResize);
+			window.removeEventListener('orientationchange', onResize);
+		};
+	}, []);
+
 	return (
 		<section
 			id={idName}
-			className="h-screen max-h-screen flex flex-col items-center snap-start mx-1 lg:mx-0"
+			className={`flex flex-col items-center mx-1 lg:mx-0 ${
+				isTall ? ' h-screen max-h-screen snap-start' : ''
+			}`}
 		>
 			{children}
 		</section>

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Menu } from './Menu';
 import { useTheme } from '../context/ThemeContext';
+import { useScrollToElement } from '../hooks/useScrollToElement';
 
 export const Header = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const { theme, toggle } = useTheme();
+	const scrollToElement = useScrollToElement();
+
 	return (
 		<header className="flex flex-row justify-between fixed top-1 right-0 left-0 p-2 z-20 bg-transparent">
 			<input
@@ -12,7 +15,7 @@ export const Header = () => {
 				className="hover:cursor-pointer transition font-header text-lg tracking-wider ml-2"
 				aria-label="Home Button"
 				value={'OMEX'}
-				onClick={() => (window.location.href = '/')}
+				onClick={() => (scrollToElement('home'))}
 			/>
 
 			<div className="flex flex-row justify-end items-center gap-0 bg-transparent">

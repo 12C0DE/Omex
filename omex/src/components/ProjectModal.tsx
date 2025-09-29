@@ -5,7 +5,9 @@ import {
 	DialogTitle,
 } from '@headlessui/react';
 import type { ProjectType } from '../types/index';
+import { Button } from '@headlessui/react';
 import { useTheme } from '../context/ThemeContext';
+import { ArrowButton } from './index';
 
 type ProjectModalProps = {
 	open: boolean;
@@ -51,6 +53,16 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 								}
 					}
 				>
+					<div className="absolute top-1/2 left-4">
+
+					<ArrowButton direction="left" onClick={closing} />
+					</div>
+					{/* <Button className="fixed top-1/2 left-4">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-8 drop-shadow-lg hover:cursor-pointer">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+</svg>
+
+					</Button> */}
 					<div>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -82,6 +94,9 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 						<DialogTitle className="text-lg font-bold select-none mt-4 p-1">
 							{project.title}
 						</DialogTitle>
+					</div>
+					<div className="absolute top-1/2 right-4">
+					<ArrowButton direction="right" onClick={closing} />
 					</div>
 				</DialogPanel>
 			</div>

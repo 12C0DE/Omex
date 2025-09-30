@@ -35,7 +35,7 @@ export const ContactUs = () => {
 		<ScreenContainer idName="contactus">
 			<Title text="Contact Us" id="contactus2" />
 			<form
-				className="flex flex-col items-center mt-8 gap-4 "
+				className=""
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<div className="flex flex-row align-center gap-4">
@@ -120,8 +120,7 @@ export const ContactUs = () => {
 						</p>
 					)}
 				</div>
-			</form>
-			<div className="w-full max-w-lg flex justify-end mt-8 mb-8">
+			<div className="w-full max-w-lg flex justify-end my-8">
 				<Button
 					type="submit"
 					className="p-4 hover:bg-blue-700 font-kanit w-[136px]"
@@ -134,6 +133,7 @@ export const ContactUs = () => {
 					Send
 				</Button>
 			</div>
+			</form>
 		</ScreenContainer>
 	);
 };

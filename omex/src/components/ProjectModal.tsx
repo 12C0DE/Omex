@@ -1,3 +1,4 @@
+import React from 'react';
 import {
 	Dialog,
 	DialogBackdrop,
@@ -5,7 +6,7 @@ import {
 	DialogTitle,
 } from '@headlessui/react';
 import type { ProjectType } from '../types/index';
-import { Button } from '@headlessui/react';
+// Button not used here
 import { useTheme } from '../context/ThemeContext';
 import { ArrowButton } from './index';
 
@@ -25,6 +26,7 @@ const picArray = [
 
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();
+	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
 	return (
 		<Dialog
 			open={open}
@@ -55,14 +57,8 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 				>
 					<div className="absolute top-1/2 left-4">
 
-					<ArrowButton direction="left" onClick={closing} />
+					<ArrowButton direction="left" containerRef={scrollerRef} />
 					</div>
-					{/* <Button className="fixed top-1/2 left-4">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-8 drop-shadow-lg hover:cursor-pointer">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-</svg>
-
-					</Button> */}
 					<div>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +75,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 								d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
 							/>
 						</svg>
-						<div className="w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory">
+						<div ref={scrollerRef} className="w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory">
 							{picArray.map((pic, index) => (
 								<div
 									key={`pic${index}`}
@@ -96,7 +92,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 						</DialogTitle>
 					</div>
 					<div className="absolute top-1/2 right-4">
-					<ArrowButton direction="right" onClick={closing} />
+					<ArrowButton direction="right" containerRef={scrollerRef} />
 					</div>
 				</DialogPanel>
 			</div>

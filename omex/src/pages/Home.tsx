@@ -13,12 +13,12 @@ export const Home = () => {
 
 	// track viewport height so the class updates on resize / orientation change
 	const [isTall, setIsTall] = useState(() =>
-		typeof window !== 'undefined' ? window.innerHeight > 700 : false,
+		typeof window !== 'undefined' ? window.innerHeight > 500 : false,
 	);
 
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
-		const onResize = () => setIsTall(window.innerHeight > 700);
+		const onResize = () => setIsTall(window.innerHeight > 500);
 		onResize();
 		window.addEventListener('resize', onResize);
 		window.addEventListener('orientationchange', onResize);

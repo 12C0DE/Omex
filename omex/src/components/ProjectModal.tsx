@@ -6,7 +6,6 @@ import {
 	DialogTitle,
 } from '@headlessui/react';
 import type { ProjectType } from '../types/index';
-// Button not used here
 import { useTheme } from '../context/ThemeContext';
 import { ArrowButton } from './index';
 

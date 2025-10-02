@@ -7,18 +7,19 @@ import { useScroll } from '../context/ScrollContext';
 export const Home = () => {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const { containerRef: providerRef } = useScroll();
-const minHeight = 300;
+	const minHeight = 400;
 
 	// prefer the provider's ref if available (the scroll container in ScrollProvider)
 	useWheelSnap({ container: providerRef?.current ?? containerRef.current });
 
 	// track viewport height so the class updates on resize / orientation change
 	const [isTall, setIsTall] = useState(() =>
-		typeof window !== 'undefined' ? window.innerHeight > minHeight : false,
+		//typeof window !== 'undefined' ? window.innerHeight > minHeight : false,
+	window.innerHeight > minHeight ? true : false
 	);
 
 	useEffect(() => {
-		if (typeof window === 'undefined') return;
+		// if (typeof window === 'undefined') return;
 		const onResize = () => setIsTall(window.innerHeight > minHeight);
 		onResize();
 		window.addEventListener('resize', onResize);

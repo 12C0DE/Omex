@@ -1,3 +1,4 @@
+export * from './ArrowButton';
 export * from './EditStars';
 export * from './Fab';
 export * from './Header';

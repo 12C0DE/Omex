@@ -1,3 +1,4 @@
+import React from 'react';
 import {
 	Dialog,
 	DialogBackdrop,
@@ -6,6 +7,7 @@ import {
 } from '@headlessui/react';
 import type { ProjectType } from '../types/index';
 import { useTheme } from '../context/ThemeContext';
+import { ArrowButton } from './index';
 
 type ProjectModalProps = {
 	open: boolean;
@@ -23,6 +25,7 @@ const picArray = [
 
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();
+	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
 	return (
 		<Dialog
 			open={open}
@@ -51,6 +54,9 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 								}
 					}
 				>
+					<div className="absolute top-1/2 left-4">
+						<ArrowButton direction="left" containerRef={scrollerRef} />
+					</div>
 					<div>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +73,10 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 								d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
 							/>
 						</svg>
-						<div className="w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory">
+						<div
+							ref={scrollerRef}
+							className="w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory"
+						>
 							{picArray.map((pic, index) => (
 								<div
 									key={`pic${index}`}
@@ -82,6 +91,9 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 						<DialogTitle className="text-lg font-bold select-none mt-4 p-1">
 							{project.title}
 						</DialogTitle>
+					</div>
+					<div className="absolute top-1/2 right-4">
+						<ArrowButton direction="right" containerRef={scrollerRef} />
 					</div>
 				</DialogPanel>
 			</div>

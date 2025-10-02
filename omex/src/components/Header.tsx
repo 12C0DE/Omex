@@ -15,7 +15,7 @@ export const Header = () => {
 				className="hover:cursor-pointer transition font-header text-lg tracking-wider ml-2"
 				aria-label="Home Button"
 				value={'OMEX'}
-				onClick={() => (scrollToElement('home'))}
+				onClick={() => scrollToElement('home')}
 			/>
 
 			<div className="flex flex-row justify-end items-center gap-0 bg-transparent">

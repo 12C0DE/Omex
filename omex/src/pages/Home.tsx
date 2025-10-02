@@ -7,7 +7,7 @@ import { useScroll } from '../context/ScrollContext';
 export const Home = () => {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const { containerRef: providerRef } = useScroll();
-const minHeight = 400
+const minHeight = 300;
 
 	// prefer the provider's ref if available (the scroll container in ScrollProvider)
 	useWheelSnap({ container: providerRef?.current ?? containerRef.current });

@@ -56,8 +56,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 					}
 				>
 					<div className="absolute top-1/2 left-4">
-
-					<ArrowButton direction="left" containerRef={scrollerRef} />
+						<ArrowButton direction="left" containerRef={scrollerRef} />
 					</div>
 					<div>
 						<svg
@@ -75,7 +74,10 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 								d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
 							/>
 						</svg>
-						<div ref={scrollerRef} className="w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory">
+						<div
+							ref={scrollerRef}
+							className="w-full flex flex-row items-center gap-6 scroll-smooth overflow-x-auto scroll-x snap-x snap-mandatory"
+						>
 							{picArray.map((pic, index) => (
 								<div
 									key={`pic${index}`}
@@ -92,7 +94,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 						</DialogTitle>
 					</div>
 					<div className="absolute top-1/2 right-4">
-					<ArrowButton direction="right" containerRef={scrollerRef} />
+						<ArrowButton direction="right" containerRef={scrollerRef} />
 					</div>
 				</DialogPanel>
 			</div>

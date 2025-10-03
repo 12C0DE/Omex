@@ -4,8 +4,6 @@
 @import "tailwindcss";
 
 @theme {
-	/* } */
-	/* :root { */
 	--font-aleo: "Aleo", serif;
 	--font-kanit: "Kanit", sans-serif;
 	--font-header: "Outfit", sans-serif;

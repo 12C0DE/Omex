@@ -8,12 +8,12 @@ export const ScreenContainer = ({
 	idName: string;
 }) => {
 	const [isTall, setIsTall] = useState(() =>
-		typeof window !== 'undefined' ? window.innerHeight > 700 : false,
+		typeof window !== 'undefined' ? window.innerHeight > 400 : true,
 	);
 
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
-		const onResize = () => setIsTall(window.innerHeight > 700);
+		const onResize = () => setIsTall(window.innerHeight > 400);
 		onResize();
 		window.addEventListener('resize', onResize);
 		window.addEventListener('orientationchange', onResize);

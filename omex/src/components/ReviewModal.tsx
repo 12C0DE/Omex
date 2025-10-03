@@ -39,7 +39,7 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 	});
 
 	const onSubmit: SubmitHandler<SendReviewForm> = (data) => {
-		console.log(data);
+		console.log('data', data);
 		alert('Message sent! We will get back to you shortly.');
 		reset();
 	};
@@ -48,7 +48,7 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 		<Dialog
 			open={open}
 			onClose={closing}
-			className="relative z-50 border-black p-4 sticky transform "
+			className="relative z-50 border-black p-4 sticky transform"
 		>
 			<DialogBackdrop
 				transition
@@ -94,7 +94,7 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 							Submit a Review
 						</DialogTitle>
 						<form
-							className="flex flex-col gap-4 mt-8 w-full font-kanit tracking-wide text-xl max-w-lg"
+							className="flex flex-col gap-4 mt-8 w-full font-kanit tracking-wide text-lg md:text-xl max-w-lg mx-auto"
 							onSubmit={handleSubmit(onSubmit)}
 						>
 							<div className="flex flex-col gap-2 mx-4 md:mx-0">
@@ -163,7 +163,12 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 									</Button>
 									<Button
 										type="submit"
-										className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600"
+										className="hover:bg-blue-700 font-kanit w-[106px]"
+										style={
+											theme === 'dark'
+												? { backgroundColor: '#f2f2f2ff', color: '#000000ff' }
+												: { backgroundColor: '#121212ff', color: '#ffffffff' }
+										}
 									>
 										Submit
 									</Button>

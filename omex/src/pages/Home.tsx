@@ -7,33 +7,14 @@ import { useScroll } from '../context/ScrollContext';
 export const Home = () => {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const { containerRef: providerRef } = useScroll();
-	const minHeight = 300;
 
 	// prefer the provider's ref if available (the scroll container in ScrollProvider)
 	useWheelSnap({ container: providerRef?.current ?? containerRef.current });
 
-	// track viewport height so the class updates on resize / orientation change
-	const [isTall, setIsTall] = useState(() =>
-		//typeof window !== 'undefined' ? window.innerHeight > minHeight : false,
-	window.outerHeight > minHeight ? true : false
-	);
-
-	useEffect(() => {
-		// if (typeof window === 'undefined') return;
-		const onResize = () => setIsTall(window.outerHeight > minHeight);
-		onResize();
-		window.addEventListener('resize', onResize);
-		window.addEventListener('orientationchange', onResize);
-		return () => {
-			window.removeEventListener('resize', onResize);
-			window.removeEventListener('orientationchange', onResize);
-		};
-	}, []);
-
 	return (
 		<div
 			ref={containerRef}
-			className={`m-auto ${isTall ? ' min-h-screen snap-y snap-mandatory scroll-smooth' : ''}`}
+			className='m-auto min-h-screen snap-y snap-mandatory scroll-smooth'
 		>
 			<ScreenContainer idName="home">
 				<div className="flex flex-col gap-8">

@@ -39,7 +39,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 			<div className="fixed inset-0 flex w-screen items-center justify-center p-1 lg:p-4">
 				<DialogPanel
 					transition
-					className="w-[750px] max-w-screen space-y-4 p:4 lg:p-12 duration-300 ease-out data-closed:scale-95 data-closed:opacity-0 relative rounded-sm backdrop-blur-sm"
+					className="w-[750px] max-w-screen space-y-4 px:4 lg:p-12 duration-300 ease-out data-closed:scale-65 data-closed:opacity-0 relative rounded-sm backdrop-blur-sm max-h-[90vh]"
 					style={
 						theme === 'dark'
 							? {
@@ -80,7 +80,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 							{picArray.map((pic, index) => (
 								<div
 									key={`pic${index}`}
-									className="snap-center flex-shrink-0 w-7/8 max-w-[600px] mx-0 lg:mx-2 object-fit"
+									className="snap-center flex-shrink-0 w-7/8 max-w-[600px] mx-0 lg:mx-2 object-fit max-h-[75vh]"
 								>
 									<div className="w-full p-1">
 										<img src={pic} />

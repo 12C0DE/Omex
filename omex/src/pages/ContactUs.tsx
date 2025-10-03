@@ -25,7 +25,6 @@ export const ContactUs = () => {
 		},
 	});
 	const onSubmit: SubmitHandler<SendMessageForm> = (data) => {
-		console.log(data);
 		alert('Message sent! We will get back to you shortly.');
 		//clear form
 		reset();

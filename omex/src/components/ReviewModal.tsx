@@ -39,7 +39,6 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 	});
 
 	const onSubmit: SubmitHandler<SendReviewForm> = (data) => {
-		console.log(data);
 		alert('Message sent! We will get back to you shortly.');
 		reset();
 	};

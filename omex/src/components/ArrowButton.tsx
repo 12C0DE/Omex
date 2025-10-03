@@ -16,11 +16,13 @@ export const ArrowButton = ({ direction, onClick, containerRef }: Props) => {
 			console.log('children', children);
 			if (children.length > 0) {
 				const scrollLeft = el.scrollLeft;
+				console.log('current scrollLeft', scrollLeft);
 				// use offsetLeft which is already in the scroll coordinate space of the container
 				const offsets = children.map((c) => c.offsetLeft);
 				let target = scrollLeft;
 				if (direction === 'right') {
-					const found = offsets.find((o) => o > scrollLeft + 1);
+					// + 150 for some padding so we don't snap to the same element
+					const found = offsets.find((o) => o > scrollLeft + 150);
 					console.log('found', found);
 					target = found !== undefined ? found : offsets[offsets.length - 1];
 				} else {

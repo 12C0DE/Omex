@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Logo, ScreenContainer } from '../components';
 import { ContactUs, Projects, Reviews, Services } from './index';
 import { useWheelSnap } from '../hooks/useWheelSnap';
@@ -23,7 +23,7 @@ export const Home = () => {
 						<h1 className="px-2 md:px-0 md:line-clamp-3 font-kanit text-2xl md:text-3xl lg:text-4xl text-center font-semibold tracking-wide">
 							Building your vision,
 						</h1>
-						<h1 className="px-2 md:px-0 md:line-clamp-3 font-kanit text-2xl md:text-3xl lg:text-4xl text-center font-semibold tracking-wide">
+						<h1 className="px-2 md:px-0 md:line-clamp-3 font-kanit text-2xl md:text-3xl lg:text-4xl text-center font-semibold tracking-wide py-1">
 							one project at a time.
 						</h1>
 					</div>

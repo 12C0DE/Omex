@@ -29,8 +29,8 @@ export const UserReview = ({
 	);
 
 	return (
-		<div className="flex flex-col justify-start gap-2 px-2 mb-2">
-			<div className="flex flex-row justify-between items-center">
+		<div className="flex flex-col justify-start gap-2 px-2 mb-2 max-w-md">
+			<div className="flex flex-row items-center">
 				{profileIcon}
 				<Stars starCount={starCount} />
 			</div>

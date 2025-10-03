@@ -34,7 +34,10 @@ export const ContactUs = () => {
 	return (
 		<ScreenContainer idName="contactus">
 			<Title text="Contact Us" id="contactus2" />
-			<form className="flex flex-col items-center mt-8 gap-4 " onSubmit={handleSubmit(onSubmit)}>
+			<form
+				className="flex flex-col items-center mt-8 gap-4 "
+				onSubmit={handleSubmit(onSubmit)}
+			>
 				<div className="flex flex-row align-center gap-4">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

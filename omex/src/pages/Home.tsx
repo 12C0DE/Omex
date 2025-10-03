@@ -14,7 +14,7 @@ export const Home = () => {
 	return (
 		<div
 			ref={containerRef}
-			className='m-auto min-h-screen snap-y snap-mandatory scroll-smooth'
+			className="m-auto min-h-screen snap-y snap-mandatory scroll-smooth"
 		>
 			<ScreenContainer idName="home">
 				<div className="flex flex-col gap-8">

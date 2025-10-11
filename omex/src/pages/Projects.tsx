@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	ProjectCard,
 	ProjectModal,
@@ -6,9 +6,11 @@ import {
 	Title,
 } from '../components/index';
 import type { ProjectType } from '../types/index';
+import { v4 as uuidv4 } from 'uuid';
 
 export const Projects = () => {
 	const [showModal, setShowModal] = useState(false);
+	const [projects, setProjects] = useState<ProjectType[]>([]);
 	const [selectedProject, setSelectedProject] = useState({} as ProjectType);
 
 	const showProject = (project: any) => {
@@ -21,43 +23,29 @@ export const Projects = () => {
 		setShowModal(false);
 	};
 
+	useEffect(() => {
+		fetch(import.meta.env.VITE_OMEX_API as string)
+			.then((res) => res.json())
+			.then(setProjects)
+			.catch(console.error);
+	}, []);
+
 	return (
 		<ScreenContainer idName="projects">
 			<Title text="Projects" id="projects2" />
 			<div className="flex flex-row flex-wrap gap-1 w-full mx-0 lg:w-lg lg:mx-2 max-h-[70vh] overflow-y-auto justify-center">
-				<ProjectCard
-					title="WSU Project"
-					description="Talk a little about the proj."
-					clicked={() =>
-						showProject({
-							title: 'WSU Project',
-							description:
-								'Longer description to test wrapping. This project involves building a complex web application using React and Node.js.',
-						}) as unknown as ProjectType
-					}
-				/>
-				{/* <ProjectCard
-					title="Sample Project 02"
-					description="Talk a little about the proj."
-					clicked={() =>
-						showProject({
-							title: 'Sample Project 2',
-							description:
-								'Longer description to test wrapping. This project involves building a complex web application using React and Node.js.',
-						}) as unknown as ProjectType
-					}
-				/>
-				<ProjectCard
-					title="Sample Project 02"
-					description="Talk a little about the proj."
-					clicked={() =>
-						showProject({
-							title: 'Sample Project 2',
-							description:
-								'Longer description to test wrapping. This project involves building a complex web application using React and Node.js.',
-						}) as unknown as ProjectType
-					}
-				/> */}
+				{projects.map((project) => {
+					const mainImg = projects[0]?.img;
+					return (
+						<ProjectCard
+							key={uuidv4()}
+							title={project.title}
+							img={mainImg}
+							description="small talk"
+							clicked={() => showProject(project)}
+						/>
+					);
+				})}
 			</div>
 			{showModal ? (
 				<ProjectModal

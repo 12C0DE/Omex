@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Dialog,
 	DialogBackdrop,
@@ -9,18 +9,21 @@ import type { ProjectType } from '../types/index';
 import { useTheme } from '../context/ThemeContext';
 import { ArrowButton } from './index';
 
-const CLOUD_DISTRIBUTION: string = (import.meta.env.VITE_CLOUD_DISTRIBUTION as string | undefined) ?? '';
+const CLOUD_DISTRIBUTION: string =
+	(import.meta.env.VITE_CLOUD_DISTRIBUTION as string | undefined) ?? '';
 const cloudBase = CLOUD_DISTRIBUTION.replace(/\/$/, '');
 
-const cd = (path: string) => (cloudBase ? `${cloudBase}${path.startsWith('/') ? '' : '/'}${path}` : path);
+const cd = (path: string) =>
+	cloudBase ? `${cloudBase}${path.startsWith('/') ? '' : '/'}${path}` : path;
 
-const picArray = [
-	cd('/wsu/wsu1.jpg'),
-	cd('/wsu/wsu2.jpg'),
-	cd('/wsu/wsu3.jpg'),
-	cd('/wsu/wsu4.jpg'),
-	cd('/wsu/wsu5.jpg'),
-];
+// const picArray = [
+
+// 	cd('/wsu/wsu1.jpg'),
+// 	cd('/wsu/wsu2.jpg'),
+// 	cd('/wsu/wsu3.jpg'),
+// 	cd('/wsu/wsu4.jpg'),
+// 	cd('/wsu/wsu5.jpg'),
+// ];
 type ProjectModalProps = {
 	open: boolean;
 	closing: () => void;
@@ -30,6 +33,14 @@ type ProjectModalProps = {
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();
 	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
+	const [picArray, setPicArray] = useState<string[]>([]);
+
+	useEffect(() => {
+		if (open && scrollerRef.current) {
+			scrollerRef.current.scrollTo({ left: 0 });
+		}
+	}, []);
+
 	return (
 		<Dialog
 			open={open}

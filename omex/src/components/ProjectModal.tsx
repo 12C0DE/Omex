@@ -9,19 +9,23 @@ import type { ProjectType } from '../types/index';
 import { useTheme } from '../context/ThemeContext';
 import { ArrowButton } from './index';
 
+const CLOUD_DISTRIBUTION: string = (import.meta.env.VITE_CLOUD_DISTRIBUTION as string | undefined) ?? '';
+const cloudBase = CLOUD_DISTRIBUTION.replace(/\/$/, '');
+
+const cd = (path: string) => (cloudBase ? `${cloudBase}${path.startsWith('/') ? '' : '/'}${path}` : path);
+
+const picArray = [
+	cd('/wsu/wsu1.jpg'),
+	cd('/wsu/wsu2.jpg'),
+	cd('/wsu/wsu3.jpg'),
+	cd('/wsu/wsu4.jpg'),
+	cd('/wsu/wsu5.jpg'),
+];
 type ProjectModalProps = {
 	open: boolean;
 	closing: () => void;
 	project: ProjectType;
 };
-
-const picArray = [
-	'/images/projects/1/wsu1.jpg',
-	'/images/projects/1/wsu2.jpg',
-	'/images/projects/1/wsu3.jpg',
-	'/images/projects/1/wsu4.jpg',
-	'/images/projects/1/wsu5.jpg',
-];
 
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();

@@ -63,7 +63,9 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 					useEffect(() => {
 						let cancelled = false;
 
-						const rawUrls: string[] = Array.isArray(project?.img) ? project.img : [];
+						const rawUrls: string[] = Array.isArray(project?.img)
+							? project.img
+							: [];
 						if (rawUrls.length === 0) {
 							setPicArray([]);
 							return () => {
@@ -78,7 +80,9 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 							// Preload images with a concurrency limit to avoid spiking network.
 							const limit = 3;
 							let index = 0;
-							const results: (string | null)[] = new Array(urls.length).fill(null);
+							const results: (string | null)[] = new Array(urls.length).fill(
+								null,
+							);
 
 							const preload = (url: string) =>
 								new Promise<string>((resolve, reject) => {
@@ -106,7 +110,8 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 
 							try {
 								await Promise.all(workers);
-								if (!cancelled) setPicArray(results.filter(Boolean) as string[]);
+								if (!cancelled)
+									setPicArray(results.filter(Boolean) as string[]);
 							} catch (err) {
 								console.error(err);
 							}

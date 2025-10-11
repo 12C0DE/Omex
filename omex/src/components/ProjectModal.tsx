@@ -29,16 +29,123 @@ type ProjectModalProps = {
 	closing: () => void;
 	project: ProjectType;
 };
-
+//TODO: get images from project.img array
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();
 	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
 	const [picArray, setPicArray] = useState<string[]>([]);
 
 	useEffect(() => {
-		if (open && scrollerRef.current) {
-			scrollerRef.current.scrollTo({ left: 0 });
+		// if (open && scrollerRef.current) {
+		// 	scrollerRef.current.scrollTo({ left: 0 });
+		// }
+		let cancelled = false;
+
+		const urls: string[] = Array.isArray(project?.img) ? project.img : [];
+
+		if (urls.length === 0) {
+			setPicArray([]);
+			return () => {
+				cancelled = true;
+			};
 		}
+
+		(async () => {
+			// Preload images with a concurrency limit to avoid spiking network.
+			const limit = 3;
+			let index = 0;
+			const results: (string | null)[] = new Array(urls.length).fill(null);
+
+			const preload = (url: string) =>
+				new Promise<string>((resolve, reject) => {
+					const img = new Image();
+					img.onload = () => resolve(url);
+					useEffect(() => {
+						let cancelled = false;
+
+						const rawUrls: string[] = Array.isArray(project?.img) ? project.img : [];
+						if (rawUrls.length === 0) {
+							setPicArray([]);
+							return () => {
+								cancelled = true;
+							};
+						}
+
+						// turn any relative paths into full cloud URLs
+						const urls = rawUrls.map((u) => cd(u));
+
+						(async () => {
+							// Preload images with a concurrency limit to avoid spiking network.
+							const limit = 3;
+							let index = 0;
+							const results: (string | null)[] = new Array(urls.length).fill(null);
+
+							const preload = (url: string) =>
+								new Promise<string>((resolve, reject) => {
+									const img = new Image();
+									img.onload = () => resolve(url);
+									img.onerror = () => reject(url);
+									img.src = url;
+								});
+
+							const workers = Array.from(
+								{ length: Math.min(limit, urls.length) },
+								async () => {
+									while (!cancelled) {
+										const i = index++;
+										if (i >= urls.length) break;
+										try {
+											await preload(urls[i]);
+											results[i] = urls[i];
+										} catch {
+											results[i] = null;
+										}
+									}
+								},
+							);
+
+							try {
+								await Promise.all(workers);
+								if (!cancelled) setPicArray(results.filter(Boolean) as string[]);
+							} catch (err) {
+								console.error(err);
+							}
+						})().catch(console.error);
+
+						return () => {
+							cancelled = true;
+						};
+					}, [project, open]);
+					img.src = url;
+				});
+
+			const workers = Array.from(
+				{ length: Math.min(limit, urls.length) },
+				async () => {
+					while (!cancelled) {
+						const i = index++;
+						if (i >= urls.length) break;
+						try {
+							await preload(urls[i]);
+							results[i] = urls[i];
+						} catch {
+							results[i] = null;
+						}
+					}
+				},
+			);
+
+			try {
+				await Promise.all(workers);
+				if (!cancelled) setPicArray(results.filter(Boolean) as string[]);
+			} catch (err) {
+				console.error(err);
+			}
+		})().catch(console.error);
+
+		return () => {
+			cancelled = true;
+		};
 	}, []);
 
 	return (

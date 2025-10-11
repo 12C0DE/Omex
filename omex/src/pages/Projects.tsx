@@ -35,13 +35,12 @@ export const Projects = () => {
 			<Title text="Projects" id="projects2" />
 			<div className="flex flex-row flex-wrap gap-1 w-full mx-0 lg:w-lg lg:mx-2 max-h-[70vh] overflow-y-auto justify-center">
 				{projects.map((project) => {
-					const mainImg = projects[0]?.img;
 					return (
 						<ProjectCard
 							key={uuidv4()}
 							title={project.title}
-							img={mainImg}
-							description="small talk"
+							img={project.thumbnail}
+							description={project.description}
 							clicked={() => showProject(project)}
 						/>
 					);

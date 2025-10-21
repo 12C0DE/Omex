@@ -10,74 +10,16 @@ import type { ProjectType } from '../types/index';
 import { useTheme } from '../context/ThemeContext';
 import { ArrowButton } from './index';
 
-const CLOUD_DISTRIBUTION: string =
-	(import.meta.env.VITE_CLOUD_DISTRIBUTION as string | undefined) ?? '';
-const cloudBase = CLOUD_DISTRIBUTION.replace(/\/$/, '');
-
-// const cd = (path: string) =>
-// 	cloudBase ? `${cloudBase}${path.startsWith('/') ? '' : '/'}${path}` : path;
-
 type ProjectModalProps = {
 	open: boolean;
 	closing: () => void;
 	project: ProjectType;
 };
-//TODO: get images from project.img array
+
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();
 	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
 	const [picArray, setPicArray] = useState<string[]>([]);
-
-
-// useEffect(() => {
-//   let cancelled = false;
-
-//   const urls = Array.isArray(project?.images) ? project!.images : [];
-//   if (urls.length === 0) {
-//     setPicArray([]);
-//     return () => { cancelled = true; };
-//   }
-
-//   const limit = 3;
-//   let index = 0;
-//   const results: (string | null)[] = new Array(urls.length).fill(null);
-
-//   const preload = (url: string) =>
-//     new Promise<string>((resolve, reject) => {
-//       const img = new Image();
-//       img.onload = () => resolve(url);
-//       img.onerror = () => reject(url);
-//       img.src = url;
-//     });
-
-//   (async () => {
-//     const workers = Array.from({ length: Math.min(limit, urls.length) }, async () => {
-//       while (!cancelled) {
-//         const i = index++;
-//         if (i >= urls.length) break;
-//         try {
-//           await preload(urls[i]);
-//           results[i] = urls[i];
-//         } catch {
-//           results[i] = null;
-//         }
-//       }
-//     });
-
-//     try {
-//       await Promise.all(workers);
-//       if (!cancelled) {
-//         setPicArray(results.filter(Boolean) as string[]);
-//       }
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   })().catch(console.error);
-
-//   return () => { cancelled = true; };
-// }, [project, open]);
-
-
 
 useEffect(() => {
   const limit = pLimit(3);

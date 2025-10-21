@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import pLimit from 'p-limit';
 import {
 	Dialog,
 	DialogBackdrop,
@@ -13,17 +14,9 @@ const CLOUD_DISTRIBUTION: string =
 	(import.meta.env.VITE_CLOUD_DISTRIBUTION as string | undefined) ?? '';
 const cloudBase = CLOUD_DISTRIBUTION.replace(/\/$/, '');
 
-const cd = (path: string) =>
-	cloudBase ? `${cloudBase}${path.startsWith('/') ? '' : '/'}${path}` : path;
+// const cd = (path: string) =>
+// 	cloudBase ? `${cloudBase}${path.startsWith('/') ? '' : '/'}${path}` : path;
 
-// const picArray = [
-
-// 	cd('/wsu/wsu1.jpg'),
-// 	cd('/wsu/wsu2.jpg'),
-// 	cd('/wsu/wsu3.jpg'),
-// 	cd('/wsu/wsu4.jpg'),
-// 	cd('/wsu/wsu5.jpg'),
-// ];
 type ProjectModalProps = {
 	open: boolean;
 	closing: () => void;
@@ -35,123 +28,79 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
 	const [picArray, setPicArray] = useState<string[]>([]);
 
-	useEffect(() => {
-		// if (open && scrollerRef.current) {
-		// 	scrollerRef.current.scrollTo({ left: 0 });
-		// }
-		let cancelled = false;
 
-		const urls: string[] = Array.isArray(project?.img) ? project.img : [];
+// useEffect(() => {
+//   let cancelled = false;
 
-		if (urls.length === 0) {
-			setPicArray([]);
-			return () => {
-				cancelled = true;
-			};
-		}
+//   const urls = Array.isArray(project?.images) ? project!.images : [];
+//   if (urls.length === 0) {
+//     setPicArray([]);
+//     return () => { cancelled = true; };
+//   }
 
-		(async () => {
-			// Preload images with a concurrency limit to avoid spiking network.
-			const limit = 3;
-			let index = 0;
-			const results: (string | null)[] = new Array(urls.length).fill(null);
+//   const limit = 3;
+//   let index = 0;
+//   const results: (string | null)[] = new Array(urls.length).fill(null);
 
-			const preload = (url: string) =>
-				new Promise<string>((resolve, reject) => {
-					const img = new Image();
-					img.onload = () => resolve(url);
-					useEffect(() => {
-						let cancelled = false;
+//   const preload = (url: string) =>
+//     new Promise<string>((resolve, reject) => {
+//       const img = new Image();
+//       img.onload = () => resolve(url);
+//       img.onerror = () => reject(url);
+//       img.src = url;
+//     });
 
-						const rawUrls: string[] = Array.isArray(project?.img)
-							? project.img
-							: [];
-						if (rawUrls.length === 0) {
-							setPicArray([]);
-							return () => {
-								cancelled = true;
-							};
-						}
+//   (async () => {
+//     const workers = Array.from({ length: Math.min(limit, urls.length) }, async () => {
+//       while (!cancelled) {
+//         const i = index++;
+//         if (i >= urls.length) break;
+//         try {
+//           await preload(urls[i]);
+//           results[i] = urls[i];
+//         } catch {
+//           results[i] = null;
+//         }
+//       }
+//     });
 
-						// turn any relative paths into full cloud URLs
-						const urls = rawUrls.map((u) => cd(u));
+//     try {
+//       await Promise.all(workers);
+//       if (!cancelled) {
+//         setPicArray(results.filter(Boolean) as string[]);
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   })().catch(console.error);
 
-						(async () => {
-							// Preload images with a concurrency limit to avoid spiking network.
-							const limit = 3;
-							let index = 0;
-							const results: (string | null)[] = new Array(urls.length).fill(
-								null,
-							);
+//   return () => { cancelled = true; };
+// }, [project, open]);
 
-							const preload = (url: string) =>
-								new Promise<string>((resolve, reject) => {
-									const img = new Image();
-									img.onload = () => resolve(url);
-									img.onerror = () => reject(url);
-									img.src = url;
-								});
 
-							const workers = Array.from(
-								{ length: Math.min(limit, urls.length) },
-								async () => {
-									while (!cancelled) {
-										const i = index++;
-										if (i >= urls.length) break;
-										try {
-											await preload(urls[i]);
-											results[i] = urls[i];
-										} catch {
-											results[i] = null;
-										}
-									}
-								},
-							);
 
-							try {
-								await Promise.all(workers);
-								if (!cancelled)
-									setPicArray(results.filter(Boolean) as string[]);
-							} catch (err) {
-								console.error(err);
-							}
-						})().catch(console.error);
+useEffect(() => {
+  const limit = pLimit(3);
+  let active = true;
 
-						return () => {
-							cancelled = true;
-						};
-					}, [project, open]);
-					img.src = url;
-				});
+  const urls = Array.isArray(project?.images) ? project.images : [];
+  if (!urls.length) { setPicArray([]); return; }
 
-			const workers = Array.from(
-				{ length: Math.min(limit, urls.length) },
-				async () => {
-					while (!cancelled) {
-						const i = index++;
-						if (i >= urls.length) break;
-						try {
-							await preload(urls[i]);
-							results[i] = urls[i];
-						} catch {
-							results[i] = null;
-						}
-					}
-				},
-			);
+  (async () => {
+    const tasks = urls.map(url =>
+      limit(() => new Promise<string | null>(res => {
+        const img = new Image();
+        img.onload = () => res(url);
+        img.onerror = () => res(null);
+        img.src = url;
+      }))
+    );
+    const loaded = (await Promise.all(tasks)).filter(Boolean) as string[];
+    if (active) setPicArray(loaded);
+  })();
 
-			try {
-				await Promise.all(workers);
-				if (!cancelled) setPicArray(results.filter(Boolean) as string[]);
-			} catch (err) {
-				console.error(err);
-			}
-		})().catch(console.error);
-
-		return () => {
-			cancelled = true;
-		};
-	}, []);
+  return () => { active = false; };
+}, [project, open]);
 
 	return (
 		<Dialog

@@ -33,18 +33,17 @@ export const Projects = () => {
 	return (
 		<ScreenContainer idName="projects">
 			<Title text="Projects" id="projects2" />
-			<div className="flex flex-row flex-wrap gap-1 w-full mx-0 lg:w-lg lg:mx-2 max-h-[70vh] overflow-y-auto justify-center">
-				{projects.map((project) => {
-					return (
+			<div className="flex flex-row flex-nowrap gap-4 lg:mx-2 items-center overflow-x-auto py-4">
+				{projects.map((project) => (
+					<div key={(project as any).id ?? project.title} className="flex-shrink-0">
 						<ProjectCard
-							key={uuidv4()}
 							title={project.title}
 							img={project.thumbnail}
 							description={project.description}
 							clicked={() => showProject(project)}
 						/>
-					);
-				})}
+					</div>
+				))}
 			</div>
 			{showModal ? (
 				<ProjectModal

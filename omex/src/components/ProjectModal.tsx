@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import pLimit from 'p-limit';
 import {
 	Dialog,
 	DialogBackdrop,
@@ -15,17 +16,34 @@ type ProjectModalProps = {
 	project: ProjectType;
 };
 
-const picArray = [
-	'/images/projects/1/wsu1.jpg',
-	'/images/projects/1/wsu2.jpg',
-	'/images/projects/1/wsu3.jpg',
-	'/images/projects/1/wsu4.jpg',
-	'/images/projects/1/wsu5.jpg',
-];
-
 export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const { theme } = useTheme();
 	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
+	const [picArray, setPicArray] = useState<string[]>([]);
+
+useEffect(() => {
+  const limit = pLimit(3);
+  let active = true;
+
+  const urls = Array.isArray(project?.images) ? project.images : [];
+  if (!urls.length) { setPicArray([]); return; }
+
+  (async () => {
+    const tasks = urls.map(url =>
+      limit(() => new Promise<string | null>(res => {
+        const img = new Image();
+        img.onload = () => res(url);
+        img.onerror = () => res(null);
+        img.src = url;
+      }))
+    );
+    const loaded = (await Promise.all(tasks)).filter(Boolean) as string[];
+    if (active) setPicArray(loaded);
+  })();
+
+  return () => { active = false; };
+}, [project, open]);
+
 	return (
 		<Dialog
 			open={open}

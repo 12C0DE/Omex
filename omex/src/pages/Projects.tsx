@@ -34,7 +34,10 @@ export const Projects = () => {
 			<Title text="Projects" id="projects2" />
 			<div className="flex flex-row flex-nowrap gap-4 lg:mx-2 items-center overflow-x-auto py-4">
 				{projects.map((project) => (
-					<div key={(project as any).id ?? project.title} className="flex-shrink-0">
+					<div
+						key={(project as any).id ?? project.title}
+						className="flex-shrink-0"
+					>
 						<ProjectCard
 							title={project.title}
 							img={project.thumbnail}

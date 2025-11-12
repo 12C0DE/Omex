@@ -28,6 +28,7 @@ export const ContactUs = () => {
 		console.log('data', data);
 		alert('Message sent! We will get back to you shortly.');
 		//clear form
+		
 		reset();
 	};
 

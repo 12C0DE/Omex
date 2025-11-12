@@ -21,28 +21,36 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 	const scrollerRef = React.useRef<HTMLDivElement | null>(null);
 	const [picArray, setPicArray] = useState<string[]>([]);
 
-useEffect(() => {
-  const limit = pLimit(3);
-  let active = true;
+	useEffect(() => {
+		const limit = pLimit(3);
+		let active = true;
 
-  const urls = Array.isArray(project?.images) ? project.images : [];
-  if (!urls.length) { setPicArray([]); return; }
+		const urls = Array.isArray(project?.images) ? project.images : [];
+		if (!urls.length) {
+			setPicArray([]);
+			return;
+		}
 
-  (async () => {
-    const tasks = urls.map(url =>
-      limit(() => new Promise<string | null>(res => {
-        const img = new Image();
-        img.onload = () => res(url);
-        img.onerror = () => res(null);
-        img.src = url;
-      }))
-    );
-    const loaded = (await Promise.all(tasks)).filter(Boolean) as string[];
-    if (active) setPicArray(loaded);
-  })();
+		(async () => {
+			const tasks = urls.map((url) =>
+				limit(
+					() =>
+						new Promise<string | null>((res) => {
+							const img = new Image();
+							img.onload = () => res(url);
+							img.onerror = () => res(null);
+							img.src = url;
+						}),
+				),
+			);
+			const loaded = (await Promise.all(tasks)).filter(Boolean) as string[];
+			if (active) setPicArray(loaded);
+		})();
 
-  return () => { active = false; };
-}, [project, open]);
+		return () => {
+			active = false;
+		};
+	}, [project, open]);
 
 	return (
 		<Dialog

@@ -24,11 +24,34 @@ export const ContactUs = () => {
 			message: '',
 		},
 	});
-	const onSubmit: SubmitHandler<SendMessageForm> = (data) => {
+	
+	const onSubmit: SubmitHandler<SendMessageForm> = async (data) => {
 		console.log('data', data);
-		alert('Message sent! We will get back to you shortly.');
-		//clear form
+		// alert('Message sent! We will get back to you shortly.');
+
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/email}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(data)
+				}
+			);
+
+			if (!response.ok) {
+				throw new Error('Failed to send email');
+			}
+
+			alert('Message sent! We will get back to you shortly.');
+		} catch (error) {
+			console.error('Error sending email:', error);
+			alert('There was an error sending your message. Please try again later.');
+		}
 		
+		//clear form
 		reset();
 	};
 

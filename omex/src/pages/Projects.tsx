@@ -23,7 +23,7 @@ export const Projects = () => {
 	};
 
 	useEffect(() => {
-		fetch(import.meta.env.VITE_OMEX_API as string)
+		fetch(`${import.meta.env.VITE_OMEX_API as string}/omex-list-projects`)
 			.then((res) => res.json())
 			.then(setProjects)
 			.catch(console.error);

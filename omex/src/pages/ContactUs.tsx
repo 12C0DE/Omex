@@ -30,9 +30,9 @@ export const ContactUs = () => {
 
 		try {
 			const response = await fetch(
-				`${import.meta.env.VITE_API_BASE_URL as string}/contact}`,
+				`${import.meta.env.VITE_OMEX_API as string}/contact`,
 				{
-					method: 'POST',
+					method: 'POST', 
 					headers: {
 						'Content-Type': 'application/json',
 					},

@@ -10,14 +10,14 @@ const dynamodb = DynamoDBDocumentClient.from(client);
 export const handler = async (event) => {
   try {
     const body = typeof event.body === "string" ? JSON.parse(event.body) : event;
-    const { id, email, message, rating, name, displayPublicly } = body;
+    const { id, message, rating, name, displayPublicly } = body;
 
-    if (!email || !message || !name || rating === undefined || rating === null) {
+    if (!message || !name || rating === undefined || rating === null) {
       return {
         statusCode: 400,
         headers: { "Access-Control-Allow-Origin": "*" },
         body: JSON.stringify({
-          error: "Missing required fields: email, message, rating, name",
+          error: "Missing required fields: message, rating, name",
         }),
       };
     }
@@ -37,7 +37,6 @@ export const handler = async (event) => {
       Item: {
         id,
         createdAt: timestamp,
-        email,
         name,
         message,
         rating: Number(rating),

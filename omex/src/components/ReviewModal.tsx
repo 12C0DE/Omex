@@ -16,9 +16,11 @@ type ReviewModalProps = {
 };
 
 type SendReviewForm = {
-	email: string;
+	// email: string;
 	message: string;
 	rating: number;
+	name: string;
+	displayPublicly: boolean;
 };
 
 export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
@@ -32,16 +34,34 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 		formState: { errors },
 	} = useForm<SendReviewForm>({
 		defaultValues: {
-			email: '',
+			// email: '',
 			message: '',
 			rating: 0,
+			name: '',
+			displayPublicly: true,
 		},
 	});
 
-	const onSubmit: SubmitHandler<SendReviewForm> = (data) => {
-		console.log('data', data);
-		alert('Message sent! We will get back to you shortly.');
-		reset();
+	//TODO: implement actual submission logic
+	const onSubmit: SubmitHandler<SendReviewForm> = async (data) => {
+		try {
+			const response = await fetch(`${(import.meta.env.VITE_OMEX_API as string)}/review`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data),
+			});
+
+			if (!response.ok) {
+				throw new Error('Failed to submit review');
+			}
+
+			alert('Review submitted! Thank you for your feedback.');
+			reset();
+			closing();
+		} catch (error) {
+			console.error('Error submitting review:', error);
+			alert('There was an error submitting your review. Please try again later.');
+		}
 	};
 
 	return (
@@ -129,20 +149,21 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 									</div>
 								</div>
 								<div>
-									<label>
-										3.Upload photos{' '}
-										<i className="font-light text-sm text-gray-300">
-											(optional)
-										</i>
-									</label>
-								</div>
-								<div>
-									<label>4. Your name</label>
+									<label>3. Your name</label>
 									<input
 										type="text"
 										className="border border-gray-300 p-2 font-light text-sm w-full mt-1"
 									/>
 								</div>
+								{/* <div>
+									<label>
+										4.Email
+									</label>
+									<input
+										type="text"
+										className="border border-gray-300 p-2 font-light text-sm w-full mt-1"
+									/>
+								</div> */}
 								<div className="flex flex-row gap-1 align-baseline">
 									<input
 										type="checkbox"

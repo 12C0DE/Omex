@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
 	Button,
 	Dialog,
@@ -33,12 +32,13 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 		handleSubmit,
 		watch,
 		reset,
+		setValue,
 		formState: { errors },
 	} = useForm<SendReviewForm>({
 		defaultValues: {
 			// email: '',
 			message: '',
-			// rating: 0,
+			rating: 0,
 			name: '',
 			displayPublicly: true,
 		},
@@ -127,7 +127,9 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 							<div className="flex flex-col gap-2 mx-4 md:mx-0">
 								<label>1. Rate your experience</label>
 								<div className="mx-auto">
-									<EditStars />
+									 <EditStars 
+									  onRatingChange={(rating: number) => setValue("rating", rating)}
+									  />
 								</div>
 							</div>
 							<div className="flex flex-col gap-2 mx-4 md:mx-0">

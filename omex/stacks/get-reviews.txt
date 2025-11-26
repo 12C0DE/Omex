@@ -1,0 +1,67 @@
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, QueryCommand } from "@aws-sdk/lib-dynamodb";
+
+const client = new DynamoDBClient({
+  region: process.env.AWS_REGION || "us-east-2",
+});
+
+const dynamodb = DynamoDBDocumentClient.from(client);
+
+export const handler = async (event) => {
+  console.info("Received event", { event });
+
+  try {
+    const tableName = process.env.REVIEWS_TABLE || "reviews";
+
+    const body = event.body ? JSON.parse(event.body) : {};
+
+    // Query parameters (MUCH BETTER THAN SCAN)
+    const params = {
+      TableName: tableName,
+      IndexName: "status-index", // <-- IMPORTANT: must match your GSI name
+      KeyConditionExpression: "#status = :approvedStatus",
+      ExpressionAttributeNames: {
+        "#status": "status",
+      },
+      ExpressionAttributeValues: {
+        ":approvedStatus": "approved",
+      },
+      Limit: 10, // pagination size (can adjust)
+      // ExclusiveStartKey: event.lastKey || null,
+    };
+
+    // ONLY add it if it's a real object
+if (event?.lastKey) {
+  params.ExclusiveStartKey = event.lastKey;
+}
+
+    const result = await dynamodb.send(new QueryCommand(params));
+
+    console.info("Query results", {
+      count: result.Items?.length || 0,
+      lastKey: result.LastEvaluatedKey || null,
+    });
+
+    return {
+      statusCode: 200,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify({
+        success: true,
+        reviews: result.Items || [],
+        count: result.Items?.length || 0,
+        lastKey: result.LastEvaluatedKey || null, // return for pagination
+      }),
+    };
+  } catch (error) {
+    console.error("Error fetching reviews", { error });
+
+    return {
+      statusCode: 500,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify({
+        success: false,
+        error: "Failed to fetch reviews",
+      }),
+    };
+  }
+};

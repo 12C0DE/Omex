@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
 	Button,
 	Dialog,
@@ -9,6 +10,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { EditStars } from '../components/index';
+import { v4 as uuid } from 'uuid';
 
 type ReviewModalProps = {
 	open: boolean;
@@ -36,7 +38,7 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 		defaultValues: {
 			// email: '',
 			message: '',
-			rating: 0,
+			// rating: 0,
 			name: '',
 			displayPublicly: true,
 		},
@@ -45,11 +47,14 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 	//TODO: implement actual submission logic
 	const onSubmit: SubmitHandler<SendReviewForm> = async (data) => {
 		try {
-			const response = await fetch(`${(import.meta.env.VITE_OMEX_API as string)}/review`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(data),
-			});
+			const response = await fetch(
+				`${import.meta.env.VITE_OMEX_API as string}/review`,
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ id: uuid(), ...data }),
+				},
+			);
 
 			if (!response.ok) {
 				throw new Error('Failed to submit review');
@@ -60,7 +65,9 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 			closing();
 		} catch (error) {
 			console.error('Error submitting review:', error);
-			alert('There was an error submitting your review. Please try again later.');
+			alert(
+				'There was an error submitting your review. Please try again later.',
+			);
 		}
 	};
 
@@ -153,6 +160,11 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 									<input
 										type="text"
 										className="border border-gray-300 p-2 font-light text-sm w-full mt-1"
+										{...register('name', {
+											required: true,
+											minLength: 1,
+											maxLength: 25,
+										})}
 									/>
 								</div>
 								{/* <div>
@@ -169,6 +181,7 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 										type="checkbox"
 										style={{ height: '24px', width: '24px' }}
 										defaultChecked={true}
+										{...register('displayPublicly')}
 									/>
 									<label className="font-light text-sm">
 										{' '}

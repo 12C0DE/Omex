@@ -127,9 +127,19 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 							<div className="flex flex-col gap-2 mx-4 md:mx-0">
 								<label>1. Rate your experience</label>
 								<div className="mx-auto">
-									 <EditStars 
-									  onRatingChange={(rating: number) => setValue("rating", rating)}
-									  />
+									<EditStars
+										{...register('rating', { required: true, min: 1, max: 5 })}
+										onRatingChange={(rating: number) =>
+											setValue('rating', rating)
+										}
+									/>
+
+									<p
+										role="alert"
+										className="text-red-500 text-xs font-kanit font-xs italic"
+									>
+										{errors?.rating?.message}
+									</p>
 								</div>
 							</div>
 							<div className="flex flex-col gap-2 mx-4 md:mx-0">

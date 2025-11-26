@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
-export const EditStars = ({ onRatingChange }: { onRatingChange: (rating: number) => void }) => {
+export const EditStars = ({
+	onRatingChange,
+}: {
+	onRatingChange: (rating: number) => void;
+}) => {
 	const [starCount, setStarCount] = useState(0);
 	const [hoveredStar, setHoveredStar] = useState(0);
 	const { theme } = useTheme();

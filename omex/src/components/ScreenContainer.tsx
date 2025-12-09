@@ -26,9 +26,9 @@ export const ScreenContainer = ({
 	return (
 		<section
 			id={idName}
-			className={`flex flex-col items-center mx-1 lg:mx-0 ${
-				isTall ? ' h-screen max-h-screen snap-start' : ''
-			}`}
+			className={
+				'flex flex-col items-center mx-1 lg:mx-0 h-screen min-h-screen'
+			}
 		>
 			{children}
 		</section>

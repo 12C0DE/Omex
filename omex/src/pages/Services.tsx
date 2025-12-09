@@ -5,10 +5,10 @@ export const Services = () => {
 		<ScreenContainer idName="services">
 			<Title id="services2" text="Services" />
 			<div className="flex flex-col gap-2 w-full lg:w-lg">
-				<ServicesCard title="Framing" img="" />
-				<ServicesCard title="Drywall" img="" />
-				<ServicesCard title="Finishing" img="" />
-				<ServicesCard title="Acoustic Ceilings" img="" />
+				<ServicesCard title="framing" />
+				<ServicesCard title="drywall" />
+				<ServicesCard title="finishing" />
+				<ServicesCard title="acoustic ceilings" />
 			</div>
 		</ScreenContainer>
 	);

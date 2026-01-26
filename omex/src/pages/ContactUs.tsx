@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import { ScreenContainer, Title } from '../components/index';
+import { Footer, ScreenContainer, Title } from '../components/index';
 import { Button } from '@headlessui/react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -32,7 +32,7 @@ export const ContactUs = () => {
 			const response = await fetch(
 				`${import.meta.env.VITE_OMEX_API as string}/contact`,
 				{
-					method: 'POST', 
+					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
@@ -157,6 +157,7 @@ export const ContactUs = () => {
 					</Button>
 				</div>
 			</form>
+			<Footer />
 		</ScreenContainer>
 	);
 };

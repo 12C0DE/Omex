@@ -4,72 +4,72 @@
 @import "tailwindcss";
 
 @theme {
-  --font-aleo: "Aleo", serif;
-  --font-kanit: "Kanit", sans-serif;
-  --font-header: "Outfit", sans-serif;
+	--font-aleo: "Aleo", serif;
+	--font-kanit: "Kanit", sans-serif;
+	--font-header: "Outfit", sans-serif;
 }
 
 :root.theme-light {
-  --bg-color: #ffffff;
-  --panel-bg: rgba(255, 255, 255, 0.9);
-  --text-color: #0f172a; /* slate-900 */
-  --muted-color: #6b7280; /* gray-500 */
-  --accent-color: #0ea5a4; /* teal-500 */
+	--bg-color: #ffffff;
+	--panel-bg: rgba(255, 255, 255, 0.9);
+	--text-color: #0f172a; /* slate-900 */
+	--muted-color: #6b7280; /* gray-500 */
+	--accent-color: #0ea5a4; /* teal-500 */
 }
 
 :root.theme-dark {
-  --bg-color: #0b1220;
-  --panel-bg: rgba(2, 6, 23, 0.72);
-  --text-color: #e6eef8; /* light */
-  --muted-color: #94a3b8; /* muted */
-  --accent-color: #34d399; /* green-400 */
+	--bg-color: #0b1220;
+	--panel-bg: rgba(2, 6, 23, 0.72);
+	--text-color: #e6eef8; /* light */
+	--muted-color: #94a3b8; /* muted */
+	--accent-color: #34d399; /* green-400 */
 }
 
 /* Utility classes that map to CSS variables (used where Tailwind static classes aren't desired) */
 .bg-panel {
-  background-color: var(--panel-bg);
+	background-color: var(--panel-bg);
 }
 .text-theme {
-  color: var(--text-color);
+	color: var(--text-color);
 }
 .muted {
-  color: var(--muted-color);
+	color: var(--muted-color);
 }
 .accent {
-  color: var(--accent-color);
+	color: var(--accent-color);
 }
 
 /* apply base colors to document and root so plain text and backgrounds follow theme */
 html.theme-light body,
 html.theme-light #root {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+	background-color: var(--bg-color);
+	color: var(--text-color);
 }
 
 html.theme-dark body,
 html.theme-dark #root {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+	background-color: var(--bg-color);
+	color: var(--text-color);
 }
 
 /* common Tailwind utility overrides for dark mode to make theme switch visible */
 .theme-dark .text-gray-500 {
-  color: var(--muted-color) !important;
+	color: var(--muted-color) !important;
 }
 .theme-dark .text-white {
-  color: var(--text-color) !important;
+	color: var(--text-color) !important;
 }
 .theme-dark .bg-white {
-  background-color: var(--panel-bg) !important;
+	background-color: var(--panel-bg) !important;
 }
 .theme-dark .bg-gray-200 {
-  background-color: rgba(255, 255, 255, 0.04) !important;
+	background-color: rgba(255, 255, 255, 0.04) !important;
 }
 .theme-dark .bg-black {
-  background-color: rgba(255, 255, 255, 0.03) !important;
+	background-color: rgba(255, 255, 255, 0.03) !important;
 }
 .theme-dark .border-black {
-  border-color: rgba(255, 255, 255, 0.06) !important;
+	border-color: rgba(255, 255, 255, 0.06) !important;
 }
 /* .theme-dark .drywall {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cline x1='0' y1='5' x2='10' y2='5' stroke='%23454545' stroke-width='1'/%3E%3C/svg%3E") !important; 
@@ -77,10 +77,10 @@ html.theme-dark #root {
 
 /* slight adjustments for light mode to ensure contrast */
 .theme-light .bg-white {
-  background-color: #ffffff !important;
+	background-color: #ffffff !important;
 }
 .theme-light .text-gray-500 {
-  color: #6b7280 !important;
+	color: #6b7280 !important;
 }
 /* .theme-light .drywall {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Ccircle cx='3' cy='3' r='1' fill='%23ebebeb'/%3E%3C/svg%3E") !important;

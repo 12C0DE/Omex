@@ -51,8 +51,8 @@ export const Reviews = () => {
 	return (
 		<ScreenContainer idName="reviews">
 			<Title text="Reviews" id="reviews2" />
-			<div className="flex flex-col justify-between h-6/8">
-				<div className="flex flex-col gap-4 mt-8">
+			<div className="flex flex-col justify-between min-h-6/8">
+				<div className="flex flex-col gap-4 mt-8 h-100">
 					{loading && (
 						<p className="text-center text-gray-500">Loading reviews...</p>
 					)}

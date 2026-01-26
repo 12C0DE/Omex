@@ -59,7 +59,7 @@ export const Reviews = () => {
 					{error && <p className="text-center text-red-500">{error}</p>}
 					{!loading && reviews.length === 0 && (
 						<p className="text-center text-gray-500">
-							No approved reviews yet. Be the first to write one!
+							No reviews yet. Be the first to write one!
 						</p>
 					)}
 					{reviews.map((review) => (

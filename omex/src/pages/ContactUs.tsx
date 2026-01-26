@@ -79,7 +79,7 @@ export const ContactUs = () => {
 
 					<a href="tel:3165552323">
 						<h4 className="text-[32px] font-kanit font-wider tracking-wide">
-							316-555-2323
+							316-889-1507
 						</h4>
 					</a>
 				</div>

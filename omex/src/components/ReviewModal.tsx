@@ -9,6 +9,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import { EditStars } from '../components/index';
+import { v4 as uuid } from 'uuid';
 
 type ReviewModalProps = {
 	open: boolean;
@@ -16,9 +17,11 @@ type ReviewModalProps = {
 };
 
 type SendReviewForm = {
-	email: string;
+	// email: string;
 	message: string;
 	rating: number;
+	name: string;
+	displayPublicly: boolean;
 };
 
 export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
@@ -29,19 +32,43 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 		handleSubmit,
 		watch,
 		reset,
+		setValue,
 		formState: { errors },
 	} = useForm<SendReviewForm>({
 		defaultValues: {
-			email: '',
+			// email: '',
 			message: '',
 			rating: 0,
+			name: '',
+			displayPublicly: true,
 		},
 	});
 
-	const onSubmit: SubmitHandler<SendReviewForm> = (data) => {
-		console.log('data', data);
-		alert('Message sent! We will get back to you shortly.');
-		reset();
+	//TODO: implement actual submission logic
+	const onSubmit: SubmitHandler<SendReviewForm> = async (data) => {
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_OMEX_API as string}/review`,
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ id: uuid(), ...data }),
+				},
+			);
+
+			if (!response.ok) {
+				throw new Error('Failed to submit review');
+			}
+
+			alert('Review submitted! Thank you for your feedback.');
+			reset();
+			closing();
+		} catch (error) {
+			console.error('Error submitting review:', error);
+			alert(
+				'There was an error submitting your review. Please try again later.',
+			);
+		}
 	};
 
 	return (
@@ -100,7 +127,19 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 							<div className="flex flex-col gap-2 mx-4 md:mx-0">
 								<label>1. Rate your experience</label>
 								<div className="mx-auto">
-									<EditStars />
+									<EditStars
+										{...register('rating', { required: true, min: 1, max: 5 })}
+										onRatingChange={(rating: number) =>
+											setValue('rating', rating)
+										}
+									/>
+
+									<p
+										role="alert"
+										className="text-red-500 text-xs font-kanit font-xs italic"
+									>
+										{errors?.rating?.message}
+									</p>
 								</div>
 							</div>
 							<div className="flex flex-col gap-2 mx-4 md:mx-0">
@@ -129,25 +168,32 @@ export const ReviewModal = ({ open, closing }: ReviewModalProps) => {
 									</div>
 								</div>
 								<div>
-									<label>
-										3.Upload photos{' '}
-										<i className="font-light text-sm text-gray-300">
-											(optional)
-										</i>
-									</label>
+									<label>3. Your name</label>
+									<input
+										type="text"
+										className="border border-gray-300 p-2 font-light text-sm w-full mt-1"
+										{...register('name', {
+											required: true,
+											minLength: 1,
+											maxLength: 25,
+										})}
+									/>
 								</div>
-								<div>
-									<label>4. Your name</label>
+								{/* <div>
+									<label>
+										4.Email
+									</label>
 									<input
 										type="text"
 										className="border border-gray-300 p-2 font-light text-sm w-full mt-1"
 									/>
-								</div>
+								</div> */}
 								<div className="flex flex-row gap-1 align-baseline">
 									<input
 										type="checkbox"
 										style={{ height: '24px', width: '24px' }}
 										defaultChecked={true}
+										{...register('displayPublicly')}
 									/>
 									<label className="font-light text-sm">
 										{' '}

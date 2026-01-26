@@ -1,0 +1,67 @@
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
+
+const client = new DynamoDBClient({
+  region: process.env.AWS_REGION || "us-east-2",
+});
+
+const dynamodb = DynamoDBDocumentClient.from(client);
+
+export const handler = async (event) => {
+  try {
+    const body = typeof event.body === "string" ? JSON.parse(event.body) : event;
+    const { id, message, rating, name, displayPublicly } = body;
+
+    if (!message || !name || rating === undefined || rating === null) {
+      return {
+        statusCode: 400,
+        headers: { "Access-Control-Allow-Origin": "*" },
+        body: JSON.stringify({
+          error: "Missing required fields: message, rating, name",
+        }),
+      };
+    }
+
+    if (rating < 1 || rating > 5) {
+      return {
+        statusCode: 400,
+        headers: { "Access-Control-Allow-Origin": "*" },
+        body: JSON.stringify({ error: "Rating must be between 1 and 5" }),
+      };
+    }
+
+    const timestamp = new Date().toISOString();
+
+    const params = {
+      TableName: process.env.REVIEWS_TABLE || "reviews",
+      Item: {
+        id,
+        createdAt: timestamp,
+        name,
+        message,
+        rating: Number(rating),
+        displayPublicly: Boolean(displayPublicly),
+        status: "pending",
+      },
+    };
+
+    await dynamodb.send(new PutCommand(params));
+
+    return {
+      statusCode: 201,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify({
+        success: true,
+        id,
+        message: "Review submitted successfully",
+      }),
+    };
+  } catch (error) {
+    console.error("Error submitting review:", error);
+    return {
+      statusCode: 500,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify({ error: "Failed to submit review" }),
+    };
+  }
+};

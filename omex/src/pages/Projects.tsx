@@ -23,7 +23,7 @@ export const Projects = () => {
 	};
 
 	useEffect(() => {
-		fetch(import.meta.env.VITE_OMEX_API as string)
+		fetch(`${import.meta.env.VITE_OMEX_API as string}/omex-list-projects`)
 			.then((res) => res.json())
 			.then(setProjects)
 			.catch(console.error);
@@ -32,9 +32,12 @@ export const Projects = () => {
 	return (
 		<ScreenContainer idName="projects">
 			<Title text="Projects" id="projects2" />
-			<div className="flex flex-row flex-nowrap gap-4 lg:mx-2 items-center overflow-x-auto py-4">
+			<div className="flex flex-row flex-wrap gap-4 lg:mx-2 items-center justify-center align-start md:align-center py-4">
 				{projects.map((project) => (
-					<div key={(project as any).id ?? project.title} className="flex-shrink-0">
+					<div
+						key={(project as any).id ?? project.title}
+						className="flex-shrink-0"
+					>
 						<ProjectCard
 							title={project.title}
 							img={project.thumbnail}

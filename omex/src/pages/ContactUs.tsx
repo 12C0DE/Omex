@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import { ScreenContainer, Title } from '../components/index';
+import { Footer, ScreenContainer, Title } from '../components/index';
 import { Button } from '@headlessui/react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -24,9 +24,32 @@ export const ContactUs = () => {
 			message: '',
 		},
 	});
-	const onSubmit: SubmitHandler<SendMessageForm> = (data) => {
+
+	const onSubmit: SubmitHandler<SendMessageForm> = async (data) => {
 		console.log('data', data);
-		alert('Message sent! We will get back to you shortly.');
+
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_OMEX_API as string}/contact`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(data),
+				},
+			);
+
+			if (!response.ok) {
+				throw new Error('Failed to send email');
+			}
+
+			alert('Message sent! We will get back to you shortly.');
+		} catch (error) {
+			console.error('Error sending email:', error);
+			alert('There was an error sending your message. Please try again later.');
+		}
+
 		//clear form
 		reset();
 	};
@@ -56,7 +79,7 @@ export const ContactUs = () => {
 
 					<a href="tel:3165552323">
 						<h4 className="text-[32px] font-kanit font-wider tracking-wide">
-							316-555-2323
+							316-889-1507
 						</h4>
 					</a>
 				</div>
@@ -134,6 +157,7 @@ export const ContactUs = () => {
 					</Button>
 				</div>
 			</form>
+			<Footer />
 		</ScreenContainer>
 	);
 };

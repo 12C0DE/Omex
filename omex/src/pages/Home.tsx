@@ -1,21 +1,9 @@
-import { useRef } from 'react';
 import { Logo, ScreenContainer } from '../components';
 import { ContactUs, Projects, Reviews, Services } from './index';
-import { useWheelSnap } from '../hooks/useWheelSnap';
-import { useScroll } from '../context/ScrollContext';
 
 export const Home = () => {
-	const containerRef = useRef<HTMLDivElement | null>(null);
-	const { containerRef: providerRef } = useScroll();
-
-	// prefer the provider's ref if available (the scroll container in ScrollProvider)
-	useWheelSnap({ container: providerRef?.current ?? containerRef.current });
-
 	return (
-		<div
-			ref={containerRef}
-			className="m-auto min-h-screen snap-y snap-mandatory scroll-smooth"
-		>
+		<div className="m-auto min-h-screen snap-y snap-mandatory scroll-smooth">
 			<ScreenContainer idName="home">
 				<div className="flex flex-col gap-8">
 					<Logo />

@@ -1,6 +1,7 @@
 export * from './ArrowButton';
 export * from './EditStars';
 export * from './Fab';
+export * from './Footer';
 export * from './Header';
 export * from './Logo';
 export * from './Menu';

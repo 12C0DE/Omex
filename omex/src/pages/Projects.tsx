@@ -3,6 +3,7 @@ import {
   ProjectCard,
   ProjectModal,
   ScreenContainer,
+  Spinner,
   Title,
 } from "../components/index";
 import type { ProjectType } from "../types/index";
@@ -11,6 +12,7 @@ export const Projects = () => {
   const [showModal, setShowModal] = useState(false);
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [selectedProject, setSelectedProject] = useState({} as ProjectType);
+  const [loading, setLoading] = useState(true);
 
   const showProject = (project: any) => {
     setSelectedProject(project);
@@ -26,13 +28,14 @@ export const Projects = () => {
     fetch(`${import.meta.env.VITE_OMEX_API as string}/omex-list-projects`)
       .then((res) => res.json())
       .then(setProjects)
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
   return (
     <ScreenContainer idName="projects">
       <Title text="Projects" id="projects2" />
-      <div className="flex flex-row flex-wrap gap-4 lg:mx-2 items-center justify-center align-start md:align-center pt-4 pb-32">
+      {loading ? <Spinner /> : (<div className="flex flex-row flex-wrap gap-4 lg:mx-2 items-center justify-center align-start md:align-center mt-8 pb-32">
         {projects.map((project) => (
           <div
             key={(project as any).id ?? project.title}
@@ -46,7 +49,7 @@ export const Projects = () => {
             />
           </div>
         ))}
-      </div>
+      </div>)}
       {showModal ? (
         <ProjectModal
           open={showModal}

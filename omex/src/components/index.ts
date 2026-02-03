@@ -10,6 +10,7 @@ export * from './ProjectModal';
 export * from './ReviewModal';
 export * from './ServicesCard';
 export * from './ScreenContainer';
+export * from './Spinner';
 export * from './Stars_RO';
 export * from './Title';
 export * from './UserReview';

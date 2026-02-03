@@ -4,7 +4,7 @@ export const Services = () => {
 	return (
 		<ScreenContainer idName="services">
 			<Title id="services2" text="Services" />
-			<div className="flex flex-col gap-2 w-full lg:w-lg">
+			<div className="flex flex-col gap-2 w-full lg:w-lg mt-8">
 				<ServicesCard title="metal framing" />
 				<ServicesCard title="drywall" />
 				<ServicesCard title="finishing" />

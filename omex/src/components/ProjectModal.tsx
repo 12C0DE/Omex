@@ -9,6 +9,7 @@ import {
 import type { ProjectType } from '../types/index';
 import { useTheme } from '../context/ThemeContext';
 import { ArrowButton } from './index';
+import { Spinner } from '../components/';
 
 type ProjectModalProps = {
 	open: boolean;
@@ -106,29 +107,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 							/>
 						</svg>
 						{loading ? (
-							<div className="flex justify-center items-center w-full h-[400px]">
-								<div className="animate-spin">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="32"
-										height="32"
-										viewBox="0 0 24 24"
-									>
-										<path
-											fill="currentColor"
-											d="M12,23a9.63,9.63,0,0,1-8-9.5,9.51,9.51,0,0,1,6.79-9.1A1.66,1.66,0,0,0,12,2.81h0a1.67,1.67,0,0,0-1.94-1.64A11,11,0,0,0,12,23Z"
-										>
-											<animateTransform
-												attributeName="transform"
-												dur="2.0s"
-												repeatCount="indefinite"
-												type="rotate"
-												values="0 12 12;360 12 12"
-											/>
-										</path>
-									</svg>
-								</div>
-							</div>
+							<Spinner />
 						) : (
 							<div
 								ref={scrollerRef}
@@ -146,7 +125,7 @@ export const ProjectModal = ({ open, closing, project }: ProjectModalProps) => {
 								))}
 							</div>
 						)}
-						<DialogTitle className="text-lg font-bold select-none mt-4 p-1">
+						<DialogTitle className="text-lg font-bold select-none p-1 bottom-2">
 							{project.title}
 						</DialogTitle>
 					</div>
